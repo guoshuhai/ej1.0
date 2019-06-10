@@ -2,7 +2,6 @@ package com.briup.apps.ej.web.controller;
 
 
 import com.briup.apps.ej.bean.Address;
-import com.briup.apps.ej.bean.AddressExample;
 import com.briup.apps.ej.service.AddressService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;

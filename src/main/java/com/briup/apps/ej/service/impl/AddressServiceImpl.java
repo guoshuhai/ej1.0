@@ -1,4 +1,4 @@
-package com.briup.apps.ej.service.Impl;
+package com.briup.apps.ej.service.impl;
 
 import com.briup.apps.ej.bean.Address;
 import com.briup.apps.ej.bean.AddressExample;
