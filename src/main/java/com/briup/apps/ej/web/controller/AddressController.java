@@ -19,7 +19,7 @@ public class AddressController {
     private AddressService AddressService;
 
 
-    @ApiOperation("select")
+    @ApiOperation("insert")
     @GetMapping("insert")
     public Message   insert(Address record){
 
