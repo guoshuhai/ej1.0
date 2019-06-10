@@ -26,13 +26,24 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public int deleteByPrimaryKey(Long id) {
-        return orderMapper.deleteByPrimaryKey(id);
+    public int deleteByPrimaryKey(Long id) throws Exception {
+        Order order=orderMapper.selectByPrimaryKey(id);
+        if(order.getId()==null){
+            throw new Exception("要删除的用户不存在");
+        }
+        else{
+           return orderMapper.deleteByPrimaryKey(id);
+        }
     }
 
     @Override
-    public int insert(Order record) {
-        return orderMapper.insert(record);
+    public int insert(Order record)throws Exception {
+        if (record.getId()==null){
+            return orderMapper.insert(record);
+        }
+        else {
+            throw new Exception("请不要输入id值");
+        }
     }
 
     @Override
@@ -66,7 +77,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public int updateByPrimaryKey(Order record) {
-        return orderMapper.updateByPrimaryKey(record);
+    public int updateByPrimaryKey(Order record) throws Exception {
+        if(record.getId()!=null){
+            return orderMapper.updateByPrimaryKey(record);
+        }
+       else {
+            throw new Exception("请输入id值");
+        }
     }
 }

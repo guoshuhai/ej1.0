@@ -27,20 +27,35 @@ public class OrderController {
 
     @GetMapping("/deleteByPrimaryKey")
     public Message deleteByPrimaryKey(@ApiParam(value = "主键",required = true) @RequestParam(value = "id")long id ){
-        orderService.deleteByPrimaryKey(id);
-        return MessageUtil.success("删除成功!");
+        try {
+            orderService.deleteByPrimaryKey(id);
+            return MessageUtil.success("删除成功!");
+        }catch (Exception e) {
+            e.printStackTrace();
+            return MessageUtil.error(e.getMessage());
+        }
     }
 
     @GetMapping("/insert")
     public  Message  insert(Order record){
-        orderService.insert(record);
-        return MessageUtil.success("插入成功!");
+        try {
+            orderService.insert(record);
+            return MessageUtil.success("插入成功!");
+        }catch (Exception e) {
+            e.printStackTrace();
+            return MessageUtil.error(e.getMessage());
+        }
     }
 
     @GetMapping("/updateByPrimaryKey")
     public Message updateByPrimaryKey(Order record){
-        orderService.updateByPrimaryKey(record);
-        return MessageUtil.success("修改成功!");
+        try {
+            orderService.updateByPrimaryKey(record);
+            return MessageUtil.success("修改成功!");
+        }catch (Exception e) {
+            e.printStackTrace();
+            return MessageUtil.error(e.getMessage());
+        }
     }
 
 
