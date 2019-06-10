@@ -20,17 +20,17 @@ public class CategoryServiceImpl  implements CategoryService {
     }
 
     @Override
-    public int deleteByExample(CategoryExample example) {
+    public int deleteByExample(CategoryExample example)  {
         return 0;
     }
 
     @Override
-    public int deleteByPrimaryKey(Long id) {
+    public int deleteByPrimaryKey(Long id) throws  Exception {
         return categoryMapper.deleteByPrimaryKey(id);
     }
 
     @Override
-    public int insert(Category record) {
+    public int insert(Category record) throws  Exception {
         return categoryMapper.insert(record);
     }
 
@@ -65,7 +65,7 @@ public class CategoryServiceImpl  implements CategoryService {
     }
 
     @Override
-    public int updateByPrimaryKey(Category record) {
+    public int updateByPrimaryKey(Category record) throws  Exception {
         return categoryMapper.updateByPrimaryKey(record);
     }
 }
