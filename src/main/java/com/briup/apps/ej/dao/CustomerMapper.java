@@ -96,4 +96,5 @@ public interface CustomerMapper {
 
     //查询所有
     List<Customer> findAllcustomer();
+    //aaa
 }
