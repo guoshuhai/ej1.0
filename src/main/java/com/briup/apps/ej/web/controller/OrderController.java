@@ -1,15 +1,19 @@
 package com.briup.apps.ej.web.controller;
 
 import com.briup.apps.ej.bean.Order;
+import com.briup.apps.ej.bean.extend.orderExtend;
 import com.briup.apps.ej.service.OrderService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("Order")
@@ -58,6 +62,18 @@ public class OrderController {
         }
     }
 
+
+    @GetMapping("/findAllOrderById")
+    public Message findAllOrderById(@ApiParam(value = "主键",required = true) @RequestParam(value = "id")long id ){
+        orderExtend orderExtend=orderService.findAllOrderById(id);
+        return MessageUtil.success("success",orderExtend);
+    }
+
+    @GetMapping("findAllOrder")
+    public  Message findAllOrder(){
+        List<Order>  list =orderService.findAllOrder();
+        return MessageUtil.success("查询成功!",list);
+    }
 
 }
 

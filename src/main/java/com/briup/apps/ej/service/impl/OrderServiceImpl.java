@@ -2,6 +2,7 @@ package com.briup.apps.ej.service.impl;
 
 import com.briup.apps.ej.bean.Order;
 import com.briup.apps.ej.bean.OrderExample;
+import com.briup.apps.ej.bean.extend.orderExtend;
 import com.briup.apps.ej.dao.OrderMapper;
 import com.briup.apps.ej.service.OrderService;
 import org.springframework.stereotype.Service;
@@ -84,5 +85,15 @@ public class OrderServiceImpl implements OrderService {
        else {
             throw new Exception("请输入id值");
         }
+    }
+
+    @Override
+    public orderExtend findAllOrderById(Long id) {
+        return orderMapper.findAllOrderById(id);
+    }
+
+    @Override
+    public List<Order>  findAllOrder() {
+        return orderMapper.findAllOrder();
     }
 }

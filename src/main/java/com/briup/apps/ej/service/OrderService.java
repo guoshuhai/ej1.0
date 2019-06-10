@@ -2,6 +2,7 @@ package com.briup.apps.ej.service;
 
 import com.briup.apps.ej.bean.Order;
 import com.briup.apps.ej.bean.OrderExample;
+import com.briup.apps.ej.bean.extend.orderExtend;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -97,5 +98,9 @@ public interface OrderService {
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
     int updateByPrimaryKey(Order record) throws  Exception;
+
+    orderExtend findAllOrderById(Long id);
+
+    List<Order>  findAllOrder();
 }
 

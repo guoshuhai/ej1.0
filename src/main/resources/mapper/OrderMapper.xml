@@ -303,7 +303,73 @@
 
 
 
+  <select id="findAllOrder" resultMap="findall">
+    select
+       ol1.id as ol1_id,
+       ol1.order_time,
+       ol1.total,
+       ol1.customer_id,
+       ol1.waiter_id,
+       ol1.address_id
+       from ej_order ol1
+       left  join  ej_customer ol2 on ol1.customer_id=ol2.id
+       left join  ej_waiter ol3 on ol1.customer_id=ol3.id
+       left join ej_address ol4 on ol1.customer_id=ol4.id
+  </select>
 
+  <resultMap id="findall" type="com.briup.apps.ej.bean.Order">
+    <id column="ol1_id" property="id"/>
+    <result column="order_time" property="orderTime"/>
+    <result column="total" property="total"/>
+    <result column="customer_id" property="customerId"/>
+    <result column="waiter_id" property="waiterId"/>
+    <result column="address_id" property="addressId"/>
+  </resultMap>
 
-
+  <select id="findAllOrderById" resultMap="findbyid">
+    select
+       c.id as c_id,
+       c.order_time,
+       c.total,
+       c.customer_id,
+       c.waiter_id,
+       c.address_id,
+       t.id as t_id,
+       t.realname,
+       t.password,
+       d.id as d_id,
+       d.realname,
+       d.status,
+       e.id as e_id,
+       e.address,
+       e.telephone
+       from ej_order c
+       left join ej_customer t on c.customer_id=t.id
+       left join ej_waiter d on c.customer_id=d.id
+       left join ej_address e on c.customer_id=e.id
+       where c.id=#{id}
+  </select>
+  <resultMap id="findbyid" type="com.briup.apps.ej.bean.extend.orderExtend">
+    <id column="c_id" property="id"/>
+    <result column="order_time" property="orderTime"/>
+    <result column="total" property="total"/>
+    <result column="customer_id" property="customerId"/>
+    <result column="waiter_id" property="waiterId"/>
+    <result column="address_id" property="addressId"/>
+    <association property="customer_ids" javaType="com.briup.apps.ej.bean.Customer">
+      <id column="t_id" property="id"/>
+      <result column="realname" property="realname"/>
+      <result column="password" property="password"/>
+    </association>
+    <association property="waiter_id" javaType="com.briup.apps.ej.bean.Waiter">
+      <id column="d_id" property="id"/>
+      <result column="realname" property="realname"/>
+      <result column="status" property="status"/>
+    </association>
+    <association property="address_id" javaType="com.briup.apps.ej.bean.Address">
+      <id column="e_id" property="id"/>
+      <result column="address" property="address"/>
+      <result column="telephone" property="telephone"/>
+    </association>
+  </resultMap>
 </mapper>
