@@ -19,24 +19,35 @@ public class CategoryController {
 
     @ApiOperation("delete")
     @GetMapping("delete")
-    public Message deleteByPrimaryKey(Long id){
+    public Message deleteByPrimaryKey(Long id) throws  Exception{
 
-        int i = categoryService.deleteByPrimaryKey(id);
+        Category category = categoryService.selectByPrimaryKey(id);
+        if (category.getId()!=null){
 
-        return MessageUtil.success("success",i);
+        return MessageUtil.success("success");
 
+    }else{
+            throw new Exception("删除失败");
 
+    }
     }
 
 
 
     @ApiOperation("update")
     @GetMapping("update")
-    public Message updateByPrimaryKey(Category record){
-
+    public Message updateByPrimaryKey(Category record) throws  Exception{
+    try {
         int i = categoryService.updateByPrimaryKey(record);
 
         return MessageUtil.success("success",i);
+
+    }catch (Exception e){
+        e.printStackTrace();
+        return  MessageUtil.error(e.getMessage());
+
+    }
+
 
 
     }
@@ -54,7 +65,7 @@ public class CategoryController {
 
     @ApiOperation("insert")
     @GetMapping("insert")
-    public Message insert(Category record){
+    public Message insert(Category record) throws  Exception{
 
         int insert = categoryService.insert(record);
 

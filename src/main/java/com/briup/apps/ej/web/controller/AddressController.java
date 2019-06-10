@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import sun.misc.MessageUtils;
 
 @RestController
 @RequestMapping("Address")
@@ -19,12 +20,17 @@ public class AddressController {
     private AddressService AddressService;
 
 
-    @ApiOperation("select")
+    @ApiOperation("insert")
     @GetMapping("insert")
-    public Message   insert(Address record){
+    public Message   insert(Address record) throws  Exception{
+    try {
+        AddressService.insert(record);
+        return MessageUtil.success("success");
+    }
+        catch (Exception e){
+         throw new Exception(e.getMessage());
 
-        int insert = AddressService.insert(record);
-        return MessageUtil.success("success",insert);
+        }
     }
 
     @ApiOperation("select")
@@ -37,15 +43,29 @@ public class AddressController {
 
     @ApiOperation("delete")
     @GetMapping("delete")
-    public Message deleteByPrimaryKey(Long id){
-        int i = AddressService.deleteByPrimaryKey(id);
-        return MessageUtil.success("success",i);
+    public Message deleteByPrimaryKey(Long id) throws  Exception {
+        Address address = AddressService.selectByPrimaryKey(id);
+
+        if (address.getId() != null) {
+            AddressService.deleteByPrimaryKey(id);
+            return MessageUtil.success("success");
+        } else {
+            throw new Exception("用户不存在");
+        }
     }
-    @ApiOperation("update")
-    @GetMapping("update")
-    public Message  updateByPrimaryKey(Address record){
-        AddressService.updateByPrimaryKey(record);
-        return MessageUtil.success("success");
+
+
+        @ApiOperation("update")
+        @GetMapping("update")
+    public Message  updateByPrimaryKey(Address record) throws Exception {
+        try {
+            AddressService.updateByPrimaryKey(record);
+            return MessageUtil.success("success");
+        }catch (Exception e){
+            e.printStackTrace();
+            return  MessageUtil.error("删除失败");
+
+        }
     }
 
 

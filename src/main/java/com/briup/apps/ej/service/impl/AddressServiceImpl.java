@@ -28,13 +28,13 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public int deleteByPrimaryKey(Long id) {
+    public int deleteByPrimaryKey(Long id) throws Exception {
         return addressMapper.deleteByPrimaryKey(id);
     }
 
     @Override
-    public int insert(Address record) {
-        return addressMapper.insert(record) ;
+    public int insert(Address record) throws  Exception{
+        return addressMapper.insert(record)  ;
     }
 
     @Override
@@ -68,7 +68,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public int updateByPrimaryKey(Address record) {
+    public int updateByPrimaryKey(Address record) throws  Exception {
         return addressMapper.updateByPrimaryKey(record);
     }
 }

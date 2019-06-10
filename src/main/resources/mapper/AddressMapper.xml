@@ -315,4 +315,9 @@
       customer_id = #{customerId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="findAllAddress">
+    select *from ej_address
+  </select>
+
 </mapper>
