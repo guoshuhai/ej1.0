@@ -3,13 +3,15 @@ package com.briup.apps.ej.bean.extend;
 import com.briup.apps.ej.bean.Comment;
 import com.briup.apps.ej.bean.Order;
 
-public class CommentExtend extends Order {
+public class CommentExtend extends Comment {
 
-    private Comment order;
-    public  Comment getOrder() { return order;}
+    private Order order;
 
-    public  void setOrder(Comment order){
-        this.order = order;
+    public Order getOrder() {
+        return order;
     }
 
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }

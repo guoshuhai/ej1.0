@@ -66,6 +66,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public int updateByPrimaryKey(Customer record) {
-        return 0;
+        return customerMapper.updateByPrimaryKey(record);
     }
 }

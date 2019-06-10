@@ -2,6 +2,7 @@ package com.briup.apps.ej.web.controller;
 
 
 import com.briup.apps.ej.bean.Comment;
+import com.briup.apps.ej.bean.extend.CommentExtend;
 import com.briup.apps.ej.service.CommentService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("comment")
@@ -49,10 +52,17 @@ public class CommentController {
 
     @ApiOperation("更新评论信息")
     @GetMapping("update")
-    public Message updateByExampleSelective(Comment record){
+    public Message update(Comment record){
 
-        int updateByExampleSelective=commentService.insert(record);
-        return MessageUtil.success("success",updateByExampleSelective);
+        int update=commentService.updateByPrimaryKey(record);
+        return MessageUtil.success("success",update);
+    }
+    @ApiOperation("查询所有评论")
+    @GetMapping("selectAll")
+    public Message selectAll(Long id) {
+        List<CommentExtend> list=commentService.selectAll(id);
+        return MessageUtil.success("sucess",list);
+
     }
 
 }

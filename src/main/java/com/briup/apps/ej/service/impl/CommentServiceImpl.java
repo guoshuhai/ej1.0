@@ -2,7 +2,9 @@ package com.briup.apps.ej.service.impl;
 
 import com.briup.apps.ej.bean.Comment;
 import com.briup.apps.ej.bean.CommentExample;
+import com.briup.apps.ej.bean.extend.CommentExtend;
 import com.briup.apps.ej.dao.CommentMapper;
+import com.briup.apps.ej.dao.extend.CommentExtendMapper;
 import com.briup.apps.ej.service.CommentService;
 
 import org.springframework.stereotype.Service;
@@ -12,7 +14,8 @@ import java.util.List;
 
 @Service
 public class CommentServiceImpl implements CommentService {
-
+    @Resource
+    CommentExtendMapper commentExtendMapper;
     @Resource
     private CommentMapper commentMapper;
 
@@ -74,8 +77,15 @@ public class CommentServiceImpl implements CommentService {
         return 0;
     }
 
+
     @Override
-    public int updateByPrimaryKey(Comment record) {
+    public int updateByPrimaryKey(Comment record){
         return commentMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<CommentExtend> selectAll(Long id) {
+
+        return commentExtendMapper.selectAll(id);
     }
 }

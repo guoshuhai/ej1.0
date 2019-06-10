@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.apps.ej.dao.extend.CommentExtendMapper">
+
+  <select id="selectAll" resultMap="commentExtendResultMap">
+    select
+     c.id as comment_id,
+     c.content,
+     c.comment_time,
+     t.id as Order_id,
+     t.order_time,
+     t.total
+     from ej_comment c left join ej_order t
+     on c.order_id = t.id
+     where c.id=#{id}
+  </select>
+
+  <resultMap id="commentExtendResultMap" type="com.briup.apps.ej.bean.extend.CommentExtend">
+    <id column="id" property="orderId"/>
+    <result column="content" property="content"/>
+    <result column="comment_time" property="commentTime"/>
+    <result column="order_id" property="orderId"/>
+
+         <association property="order" javaType="com.briup.apps.ej.bean.Order">
+            <id column="Order_id" property="id"/>
+             <result column="order_time" property="orderTime"/>
+             <result column="total" property="total"/>
+        </association>
+
+  </resultMap>
+
+</mapper>
+
+
+
+
+

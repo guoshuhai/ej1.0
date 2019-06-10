@@ -2,6 +2,7 @@ package com.briup.apps.ej.service;
 
 import com.briup.apps.ej.bean.Comment;
 import com.briup.apps.ej.bean.CommentExample;
+import com.briup.apps.ej.bean.extend.CommentExtend;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -19,5 +20,7 @@ public interface CommentService {
         int updateByExample(@Param("record") Comment record, @Param("example") CommentExample example);
         int updateByPrimaryKeySelective(Comment record);
         int updateByPrimaryKey(Comment record);
+
+        List<CommentExtend> selectAll(Long id);
     }
 
