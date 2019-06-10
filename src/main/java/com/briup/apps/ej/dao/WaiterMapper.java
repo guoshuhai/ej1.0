@@ -93,4 +93,7 @@ public interface WaiterMapper {
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
     int updateByPrimaryKey(Waiter record);
+
+    List<Waiter> findAllwaiter();
+
 }

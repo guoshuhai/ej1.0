@@ -2,6 +2,7 @@ package com.briup.apps.ej.service.impl;
 
 import com.briup.apps.ej.bean.Order_line;
 import com.briup.apps.ej.bean.Order_lineExample;
+import com.briup.apps.ej.bean.extend.Order_line_Extend;
 import com.briup.apps.ej.dao.Order_lineMapper;
 import com.briup.apps.ej.service.Order_lineService;
 import org.springframework.stereotype.Service;
@@ -81,5 +82,16 @@ public class Order_lineServiceImpl implements Order_lineService {
             throw new Exception("请输入id值");
         }
 
+    }
+
+    @Override
+    public Order_line_Extend findAllOrder_lineById(Long id)  {
+
+        return orderLineMapper.findAllOrder_lineById(id);
+    }
+
+    @Override
+    public List<Order_line_Extend> findAllOrder_line() {
+        return orderLineMapper.findAllOrder_line();
     }
 }

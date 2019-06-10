@@ -2,6 +2,7 @@ package com.briup.apps.ej.service;
 
 import com.briup.apps.ej.bean.Order_line;
 import com.briup.apps.ej.bean.Order_lineExample;
+import com.briup.apps.ej.bean.extend.Order_line_Extend;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -95,5 +96,12 @@ public interface Order_lineService {
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
     int updateByPrimaryKey(Order_line record) throws Exception;
+
+
+    //查询订单项通过id
+    Order_line_Extend findAllOrder_lineById(Long id);
+
+    //查询所有的订单项
+    List<Order_line_Extend> findAllOrder_line();
 }
 
