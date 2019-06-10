@@ -1,4 +1,4 @@
 package com.briup.apps.ej.service;
 
-public interface CategoryService {
+public interface Order_lineService {
 }
