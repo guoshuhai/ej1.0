@@ -52,8 +52,8 @@ public class CategoryController {
     }
 
 
-    @ApiOperation("select")
-    @GetMapping("select")
+    @ApiOperation("insert")
+    @GetMapping("insert")
     public Message insert(Category record){
 
         int insert = categoryService.insert(record);

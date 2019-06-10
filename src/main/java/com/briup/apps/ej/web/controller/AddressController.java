@@ -27,8 +27,8 @@ public class AddressController {
         return MessageUtil.success("success",insert);
     }
 
-    @ApiOperation("insert")
-    @GetMapping("insert")
+    @ApiOperation("select")
+    @GetMapping("select")
     public Message  selectByPrimaryKey(Long id){
 
         Address address = AddressService.selectByPrimaryKey(id);
@@ -41,7 +41,7 @@ public class AddressController {
         int i = AddressService.deleteByPrimaryKey(id);
         return MessageUtil.success("success",i);
     }
-    @ApiOperation("uopdate")
+    @ApiOperation("update")
     @GetMapping("update")
     public Message  updateByPrimaryKey(Address record){
         AddressService.updateByPrimaryKey(record);
