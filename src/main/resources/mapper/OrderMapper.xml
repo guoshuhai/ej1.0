@@ -303,6 +303,16 @@
   </update>
 
 
+   <select id="query" resultType="com.briup.apps.ej.bean.Order">
+     select * from ej_order
+     <where>
+         <if test="orderTime != null">order_time like concat('%',#{orderTime} ,'%')</if>
+         <if test="total != null">total like concat('%',#{total} ,'%')</if>
+       <if test="customerId != null">and customer_id=#{customerId} </if>
+        <if test="waiterId != null">and waiter_id=#{waiterId} </if>
+         <if test="addressId != null">and address_id=#{addressId} </if>
+     </where>
+   </select>
 
   <select id="findAllOrder" resultMap="findall">
     select

@@ -102,5 +102,7 @@ public interface OrderService {
     orderExtend findAllOrderById(Long id);
 
     List<Order>  findAllOrder();
+
+    List<Order> query(Order order);
 }
 

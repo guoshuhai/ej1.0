@@ -101,6 +101,7 @@ public interface OrderMapper {
 
     List<Order> findAllOrder();
 
+    List<Order> query(Order order);
 
 
 }

@@ -30,7 +30,6 @@ public class CustomerController {
         Customer customer=customerService.selectByPrimaryKey(id);
         return MessageUtil.success("success",customer);
     }
-
     @ApiOperation("通过id删除信息")
     @GetMapping("deleteById")
     public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") Long id){

@@ -74,5 +74,10 @@ public class OrderController {
         return MessageUtil.success("查询成功!",list);
     }
 
+    @GetMapping("/query")
+    public Message  query(Order order){
+        List<Order>  list=orderService.query(order);
+        return MessageUtil.success("success",list);
+    }
 }
 
