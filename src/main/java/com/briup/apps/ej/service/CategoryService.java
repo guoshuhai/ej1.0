@@ -2,6 +2,7 @@ package com.briup.apps.ej.service;
 
 import com.briup.apps.ej.bean.Category;
 import com.briup.apps.ej.bean.CategoryExample;
+import com.briup.apps.ej.bean.extend.CategoryExtend;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -94,4 +95,8 @@ public interface CategoryService {
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
     int updateByPrimaryKey(Category record) throws Exception;
+
+          List<CategoryExtend>  findcategorybyname(String name);
+
+
 }

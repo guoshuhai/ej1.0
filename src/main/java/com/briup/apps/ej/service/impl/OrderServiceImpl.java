@@ -2,9 +2,13 @@ package com.briup.apps.ej.service.impl;
 
 import com.briup.apps.ej.bean.Order;
 import com.briup.apps.ej.bean.OrderExample;
+import com.briup.apps.ej.bean.extend.orderExtend;
 import com.briup.apps.ej.dao.OrderMapper;
 import com.briup.apps.ej.service.OrderService;
 import org.springframework.stereotype.Service;
+import com.briup.apps.ej.service.CustomerService;
+import com.briup.apps.ej.service.WaiterService;
+import com.briup.apps.ej.service.AddressService;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -38,8 +42,26 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public int insert(Order record)throws Exception {
+        int customer_id=0,waiter_id=0,address_id=0;
+        CustomerServiceImpl customerService=new CustomerServiceImpl();
+        WaiterService waiterSercive=new WaiterServiceImpl();
+        AddressServiceImpl addressService=new AddressServiceImpl();
         if (record.getId()==null){
-            return orderMapper.insert(record);
+            if(record.getCustomerId()!=null&&customerService.selectByPrimaryKey(record.getCustomerId())!=null){
+                customer_id=1;
+            }
+            if(record.getWaiterId()!=null&&waiterSercive.findById(record.getCustomerId())!=null){
+                waiter_id=1;
+            }
+            if (record.getAddressId()!=null&&addressService.selectByPrimaryKey(record.getAddressId())!=null){
+                address_id=1;
+            }
+           if((record.getCustomerId()!=null&&customer_id==1)&&(record.getWaiterId()!=null&&waiter_id==1)&&(record.getAddressId()!=null&&address_id==1)) {
+               return orderMapper.insert(record);
+           }else {
+               throw new Exception("外键错误，外键值不存在");
+           }
+
         }
         else {
             throw new Exception("请不要输入id值");
@@ -78,11 +100,38 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public int updateByPrimaryKey(Order record) throws Exception {
+        int customer_id=0,waiter_id=0,address_id=0;
+        CustomerServiceImpl customerService=new CustomerServiceImpl();
+        WaiterService waiterSercive=new WaiterServiceImpl();
+        AddressServiceImpl addressService=new AddressServiceImpl();
         if(record.getId()!=null){
-            return orderMapper.updateByPrimaryKey(record);
+            if(record.getCustomerId()!=null&&customerService.selectByPrimaryKey(record.getCustomerId())!=null){
+                customer_id=1;
+            }
+            if(record.getWaiterId()!=null&&waiterSercive.findById(record.getCustomerId())!=null){
+                waiter_id=1;
+            }
+            if (record.getAddressId()!=null&&addressService.selectByPrimaryKey(record.getAddressId())!=null){
+                address_id=1;
+            }
+            if((record.getCustomerId()!=null&&customer_id==1)||(record.getWaiterId()!=null&&waiter_id==1)||(record.getAddressId()!=null&&address_id==1)) {
+                return orderMapper.updateByPrimaryKey(record);
+            }else {
+                throw new Exception("外键错误，外键值不存在");
+            }
         }
        else {
-            throw new Exception("请输入id值");
+            throw new Exception("请不要输入id值");
         }
+    }
+
+    @Override
+    public orderExtend findAllOrderById(Long id)  {
+        return orderMapper.findAllOrderById(id);
+    }
+
+    @Override
+    public List<Order>  findAllOrder() {
+        return orderMapper.findAllOrder();
     }
 }

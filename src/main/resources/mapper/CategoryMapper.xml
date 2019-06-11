@@ -268,4 +268,29 @@
       parent_id = #{parentId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+
+
+<select id="findcategorybyname" resultMap="CategoryExtend">
+        select
+            a.name,
+            a.num,
+            b.name,
+            b.num
+            from  ej_category a
+            left join ej_category b on a.id=b.parent_id
+            where a.name=#{name};
+
+</select>
+  <resultMap id="CategoryExtend" type="com.briup.apps.ej.bean.extend.CategoryExtend">
+    <id column="id" property="id"/>
+    <result column="name" property="name"/>
+    <result column="name" property="name"/>
+    <association property="category"  javaType="com.briup.apps.ej.bean.Category">
+      <id column="id" property="id"/>
+      <result column="name" property="name"/>
+      <result column="num" property="num"/>
+    </association>
+  </resultMap>
+
 </mapper>
