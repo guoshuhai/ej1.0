@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.apps.ej.dao.extend.ProductExtendMapper">
+    <select id="selectByPrimaryKeyw" resultMap="selectByPrimary">
+select
+        d.id as d_id,
+        d.name ,
+        d.description,
+        d.price,
+        d.status,
+        d.photo,
+        d.category_id,
+        t.id as t_id,
+        t.name
+        from ej_product d left join ej_category t
+        on d.category_id=t.id
+        where d.id=#{id}
+    </select>
+    <resultMap id="selectByPrimary" type="com.briup.apps.ej.bean.extend.ProductExtend">
+        <id column="d_id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="price" property="price"/>
+        <result column="status" property="status"/>
+        <result column="photo" property="photo"/>
+        <result column="category_id" property="categoryId"/>
+        <association property="category_id" javaType="com.briup.apps.ej.bean.Category">
+            <id column="t_id" property="id"/>
+            <result column="name" property="name"/>
+        </association>
+    </resultMap>
+
+
+
+
+
+    <!--
+    <select id="selectAll" resultMap="courseExtendResultMap">
+        select * from sms_course
+    </select>
+
+    <resultMap id="courseExtendResultMap"
+               type="com.briup.apps.app02.bean.extend.CourseExtend">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="credit" property="credit"/>
+        <result column="teacher_id" property="teacher_id"/>
+        <association
+                select="com.briup.apps.app02.dao.UserMapper.selectByPrimaryKey"
+                column="teacher_id"
+                property="teacher"/>
+    </resultMap>
+    -->
+</mapper>
