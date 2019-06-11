@@ -316,8 +316,6 @@
       <result column="total" property="total"/>
     </association>
 
-
-
   </resultMap>
 
 
