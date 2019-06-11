@@ -81,4 +81,13 @@ public class CustomerServiceImpl implements CustomerService {
     public int updateByPrimaryKey(Customer record) {
         return customerMapper.updateByPrimaryKey(record);
     }
+
+    public void batchDelete(long[] ids) throws  Exception{
+
+        for(long id:ids){
+            customerMapper.deleteByPrimaryKey(id);
+        }
+    }
+
+
 }

@@ -36,4 +36,6 @@ public interface CustomerService {
     List <Customer> query(Customer customer);
 
     List<Customer> findAllcustomer();
+
+     void batchDelete(long[] ids) throws  Exception;
 }
