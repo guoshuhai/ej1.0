@@ -27,7 +27,7 @@ public class Order_lineServiceImpl implements Order_lineService {
 
     @Override
     public int deleteByPrimaryKey(Long id) throws Exception {
-        Order_line orderLine=orderLineMapper.selectByPrimaryKey(id);
+        Order_line orderLine=orderLineMapper.findAllOrder_lineById(id);
         if(orderLine.getId()==null){
             throw new Exception("要删除的用户不存在");
         }else {
@@ -55,10 +55,10 @@ public class Order_lineServiceImpl implements Order_lineService {
         return orderLineMapper.selectByExample(example);
     }
 
-    @Override
+    /**@Override
     public Order_line selectByPrimaryKey(Long id) {
         return orderLineMapper.selectByPrimaryKey(id);
-    }
+    }**/
 
     @Override
     public int updateByExampleSelective(Order_line record, Order_lineExample example) {

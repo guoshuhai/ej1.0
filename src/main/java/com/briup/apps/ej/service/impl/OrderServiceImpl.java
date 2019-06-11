@@ -29,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public int deleteByPrimaryKey(Long id) throws Exception {
-        Order order = orderMapper.selectByPrimaryKey(id);
+        Order order = orderMapper.findAllOrderById(id);
         if (order.getId() == null) {
             throw new Exception("要删除的用户不存在");
         } else {
@@ -57,10 +57,10 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.selectByExample(example);
     }
 
-    @Override
+    /**@Override
     public Order selectByPrimaryKey(Long id) {
         return orderMapper.selectByPrimaryKey(id);
-    }
+    }**/
 
     @Override
     public int updateByExampleSelective(Order record, OrderExample example) {
