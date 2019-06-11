@@ -1,6 +1,7 @@
 package com.briup.apps.ej.web.controller;
 
 import com.briup.apps.ej.bean.Order_line;
+import com.briup.apps.ej.bean.extend.Order_line_Extend;
 import com.briup.apps.ej.service.Order_lineService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("Order_line")
@@ -56,4 +59,25 @@ public class Order_lineController {
             return MessageUtil.error(e.getMessage());
         }
     }
+
+
+    @GetMapping("findAllOrder_lineById")
+    public Message findAllOrder_lineById(@ApiParam(value = "主键",required = true) @RequestParam(value = "id") Long id) throws Exception{
+        Order_line_Extend order_line_extend=orderLineService.findAllOrder_lineById(id);
+        if (order_line_extend.getId()!=null){
+            return MessageUtil.success("success",order_line_extend);
+
+        }else
+        {  throw new Exception("此id不存在");
+        }
+
+    }
+
+    @GetMapping("findAllOrder_line")
+    public Message findAllOrder_line(){
+        List<Order_line_Extend> order_line_extends=orderLineService.findAllOrder_line();
+        return MessageUtil.success("success",order_line_extends);
+    }
+
+
 }

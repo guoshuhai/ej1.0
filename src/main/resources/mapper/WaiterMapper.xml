@@ -315,4 +315,12 @@
       photo = #{photo,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <!--查询所有waiter-->
+  <select id="findAllwaiter" resultType="com.briup.apps.ej.bean.Waiter">
+        select *from ej_waiter
+
+  </select>
+
+
+
 </mapper>

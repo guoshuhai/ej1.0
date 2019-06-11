@@ -52,10 +52,10 @@ public class CustomerController {
 
     @ApiOperation("更新顾客信息")
     @GetMapping("update")
-    public Message update(Customer record){
+    public Message updateByExampleSelective(Customer record){
 
-        int update=customerService.updateByPrimaryKey(record);
-        return MessageUtil.success("success",update);
+        int updateByExampleSelective=customerService.insert(record);
+        return MessageUtil.success("success",updateByExampleSelective);
     }
 
 

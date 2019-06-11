@@ -268,4 +268,57 @@
       order_id = #{orderId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="findAllOrder_line" resultMap="Order_lineresultMap">
+            select
+            eol.number,
+            eo.order_time,
+            eo.total,
+            ep.name,
+            ep.description,
+            ep.status,
+            ep.photo
+            from ej_order_line eol
+            left join ej_order eo on eol.order_id=eo.id
+            left join ej_product ep on eol.product_id=ep.id
+
+  </select>
+
+  <select id="findAllOrder_lineById" resultMap="Order_lineresultMap">
+ select
+            eol.number,
+            eo.order_time,
+            eo.total,
+            ep.name,
+            ep.description,
+            ep.status,
+            ep.photo
+            from ej_order_line eol
+            left join ej_order eo on eol.order_id=eo.id
+            left join ej_product ep on eol.product_id=ep.id
+            where eol.id=#{id}
+
+  </select>
+
+  <resultMap id="Order_lineresultMap" type="com.briup.apps.ej.bean.extend.Order_line_Extend">
+    <id column="id" property="id"/>
+    <result column="number" property="number"/>
+    <association property="product" javaType="com.briup.apps.ej.bean.Product">
+    <id column="id" property="id"/>
+    <result column="name" property="name"/>
+    <result column="description" property="description"/>
+    <result column="status" property="status"/>
+    <result column="photo" property="photo"/>
+  </association>
+    <association property="order" javaType="com.briup.apps.ej.bean.Order">
+      <id column="id" property="id"/>
+      <result column="order_time" property="orderTime"/>
+      <result column="total" property="total"/>
+    </association>
+
+
+
+  </resultMap>
+
+
 </mapper>
