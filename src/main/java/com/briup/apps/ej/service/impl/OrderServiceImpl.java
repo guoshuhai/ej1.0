@@ -101,4 +101,10 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.query(order);
     }
 
+    @Override
+    public void betchDelete(long[] ids) throws Exception {
+        for(long id:ids){
+            orderMapper.deleteByPrimaryKey(id);
+        }
+    }
 }

@@ -95,4 +95,11 @@ public class Order_lineServiceImpl implements Order_lineService {
     public List<Order_line_Extend> findAllOrder_line() {
         return orderLineMapper.findAllOrder_line();
     }
+
+    @Override
+    public void betchDelete(long[] ids) throws Exception {
+        for(long id:ids){
+            orderLineMapper.deleteByPrimaryKey(id);
+        }
+    }
 }

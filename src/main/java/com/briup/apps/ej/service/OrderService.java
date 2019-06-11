@@ -105,6 +105,7 @@ public interface OrderService {
 
     List<Order> query(Order order);
 
+    void betchDelete(long[] ids) throws Exception;
 
 }
 

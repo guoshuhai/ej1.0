@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -87,6 +88,13 @@ public class OrderController {
         return MessageUtil.success("success",list);
     }
 
+
+    @ApiOperation("批量删除")
+    @GetMapping("/betchDelete")
+    public Message betchDelete(@NotNull(message = "id不能为空")long[] ids) throws Exception{
+     orderService.betchDelete(ids);
+     return MessageUtil.success("批量删除成功");
+    }
 
 }
 

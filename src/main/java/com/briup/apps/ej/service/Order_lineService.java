@@ -103,5 +103,7 @@ public interface Order_lineService {
 
     //查询所有的订单项
     List<Order_line_Extend> findAllOrder_line();
+
+    void betchDelete(long[] ids) throws Exception;
 }
 
