@@ -22,7 +22,6 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-
     @GetMapping("/selectByPrimaryKey")
     public Message selectByPrimaryKey(@ApiParam(value = "主键",required = true) @RequestParam(value = "id")long id){
         Order order=orderService.selectByPrimaryKey(id);

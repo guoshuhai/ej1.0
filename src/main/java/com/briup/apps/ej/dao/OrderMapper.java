@@ -94,9 +94,13 @@ public interface OrderMapper {
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
+
     int updateByPrimaryKey(Order record);
 
     orderExtend findAllOrderById(Long id);
 
     List<Order> findAllOrder();
+
+
+
 }

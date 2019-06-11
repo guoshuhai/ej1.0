@@ -153,6 +153,7 @@
       #{customerId,jdbcType=BIGINT}, #{waiterId,jdbcType=BIGINT}, #{addressId,jdbcType=BIGINT}
       )
   </insert>
+
   <insert id="insertSelective" parameterType="com.briup.apps.ej.bean.Order">
     <!--
       WARNING - @mbg.generated
