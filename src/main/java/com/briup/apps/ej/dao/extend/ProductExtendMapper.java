@@ -2,8 +2,9 @@ package com.briup.apps.ej.dao.extend;
 import com.briup.apps.ej.bean.extend.ProductExtend;
 
 public interface ProductExtendMapper {
- ProductExtend selectByPrimaryKey();
 
+ ProductExtend selectByPrimaryKeyw(Long id);
 
 }
+
 

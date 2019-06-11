@@ -1,6 +1,7 @@
 package com.briup.apps.ej.web.controller;
 
 import com.briup.apps.ej.bean.Product;
+import com.briup.apps.ej.bean.extend.ProductExtend;
 import com.briup.apps.ej.service.ProductService;
 import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
@@ -80,9 +81,9 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/selectByPrimaryKey")
-    public Message selectByPrimaryKey(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
-        productService.selectByPrimaryKey(id);
-        return MessageUtil.success("查询成功!");
+    @GetMapping("/selectByPrimaryKeyw")
+    public Message selectByPrimaryKey(@ApiParam(value = "主键",required = true) @RequestParam(value = "id") long id){
+        ProductExtend productExtend=productService.selectByPrimaryKeyw(id);
+        return MessageUtil.success("查询成功!",productExtend);
     }
 }

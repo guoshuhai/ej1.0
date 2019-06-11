@@ -81,7 +81,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductExtend selectByPrimaryKey(Long id) {
-        return productExtendMapper.selectByPrimaryKey();
+    public ProductExtend selectByPrimaryKeyw(Long id) {
+        return productExtendMapper.selectByPrimaryKeyw(id);
     }
 }

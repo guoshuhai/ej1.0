@@ -3,26 +3,31 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.briup.apps.ej.dao.extend.ProductExtendMapper">
-    <select id="selectByPrimaryKey" resultMap="selectByPrimaryKey">
-        c.id as c_id;
-        c.name ,
-        c.description,
-        c.price,
-        c.ststus,
-        c,photo,
-        c,category_id,
+    <select id="selectByPrimaryKeyw" resultMap="selectByPrimary">
+select
+        d.id as d_id,
+        d.name ,
+        d.description,
+        d.price,
+        d.status,
+        d.photo,
+        d.category_id,
         t.id as t_id,
-        t,name
-        from ej_product c left join ej_category
-        on c.category_id=t.id
+        t.name
+        from ej_product d left join ej_category t
+        on d.category_id=t.id
+        where d.id=#{id}
     </select>
-    <resultMap id="selectByPrimaryKey" type="com.briup.apps.ej.bean.extend.ProductExtend">
-        <id column="c_id" property="id"/>
+    <resultMap id="selectByPrimary" type="com.briup.apps.ej.bean.extend.ProductExtend">
+        <id column="d_id" property="id"/>
         <result column="name" property="name"/>
         <result column="description" property="description"/>
+        <result column="price" property="price"/>
+        <result column="status" property="status"/>
+        <result column="photo" property="photo"/>
         <result column="category_id" property="categoryId"/>
-        <association property="category" javaType="com.briup.apps.ej.bean.Category">
-            <id column="t_id" property="id"/>vg
+        <association property="category_id" javaType="com.briup.apps.ej.bean.Category">
+            <id column="t_id" property="id"/>
             <result column="name" property="name"/>
         </association>
     </resultMap>

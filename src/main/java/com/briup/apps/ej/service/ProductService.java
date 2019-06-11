@@ -22,5 +22,5 @@ public interface ProductService {
     void deleteById(long id) throws Exception ;
 //    根据主键删除
 
-    ProductExtend selectByPrimaryKey(Long id);
+    ProductExtend selectByPrimaryKeyw(Long id);
 }
