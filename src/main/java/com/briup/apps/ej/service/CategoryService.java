@@ -96,7 +96,11 @@ public interface CategoryService {
      */
     int updateByPrimaryKey(Category record) throws Exception;
 
-          List<CategoryExtend>  findcategorybyname(String name);
+
+            //模糊查询通过名字
+          CategoryExtend  findcategorybyname(String name);
+
+        Category   findcategorybynamedouble(String name);
 
 
 }

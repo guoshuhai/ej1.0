@@ -271,26 +271,40 @@
 
 
 
-<select id="findcategorybyname" resultMap="CategoryExtend">
-        select
-            a.name,
-            a.num,
-            b.name,
-            b.num
+<select id="findcategorybyname" parameterType="String" resultMap="CategoryExtend">
+      select
+            a.id aid,
+            a.name  aname,
+            a.num anum,
+            b.id bid,
+            b.name bname,
+            b.num bnum
             from  ej_category a
-            left join ej_category b on a.id=b.parent_id
-            where a.name=#{name};
+            inner join ej_category b
+                on a.id=b.parent_id
+            WHERE a.name=#{name};
+
+
 
 </select>
   <resultMap id="CategoryExtend" type="com.briup.apps.ej.bean.extend.CategoryExtend">
-    <id column="id" property="id"/>
-    <result column="name" property="name"/>
-    <result column="name" property="name"/>
-    <association property="category"  javaType="com.briup.apps.ej.bean.Category">
-      <id column="id" property="id"/>
-      <result column="name" property="name"/>
-      <result column="num" property="num"/>
-    </association>
+    <id column="aid" property="id"/>
+    <result column="aname" property="name"/>
+    <result column="anum" property="num"/>
+    <collection property="childern" ofType="com.briup.apps.ej.bean.Category">
+      <id column="bid" property="id"/>
+      <result column="bname" property="name"/>
+      <result column="bnum" property="num"/>
+    </collection>
   </resultMap>
+  <select id="findcategorybynamedouble" resultType="com.briup.apps.ej.bean.Category">
+                select
+                id,
+                name,
+                num,
+                parent_id
+                from ej_category
+                where name=#{name}
+  </select>
 
 </mapper>

@@ -38,9 +38,10 @@ public class Order_lineServiceImpl implements Order_lineService {
     @Override
     public int insert(Order_line record) throws  Exception {
         if(record.getId()==null){
+
             return orderLineMapper.insert(record);
         }else {
-            throw new Exception("请不要输入id值");
+            throw new Exception("订单已存在");
         }
     }
 

@@ -66,7 +66,12 @@ public class CategoryServiceImpl  implements CategoryService {
     }
 
     @Override
-    public List<CategoryExtend> findcategorybyname(String name) {
+    public Category findcategorybynamedouble(String name) {
+        return categoryMapper.findcategorybynamedouble(name);
+    }
+
+    @Override
+    public CategoryExtend findcategorybyname(String name) {
         return categoryMapper.findcategorybyname(name);
     }
 

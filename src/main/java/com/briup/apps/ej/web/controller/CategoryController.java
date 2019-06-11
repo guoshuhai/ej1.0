@@ -70,6 +70,8 @@ public class CategoryController {
     @GetMapping("insert")
     public Message insert(Category record) throws  Exception{
 
+
+
         int insert = categoryService.insert(record);
 
         return MessageUtil.success("success",insert);
@@ -78,15 +80,27 @@ public class CategoryController {
     }
 
 
+
+
     @ApiOperation("findcategorybyname")
     @GetMapping("findcategorybyname")
-    public Message findcategorybyname(String name) throws  Exception{
+    public Message findcategorybyname(String name) throws  Exception {
 
-        List<CategoryExtend> category = categoryService.findcategorybyname(name);
 
-        return MessageUtil.success("success",category);
+            CategoryExtend findcategorybyname = categoryService.findcategorybyname(name);
+        if(findcategorybyname==null) {
+            Category findcategorybynamedouble = categoryService.findcategorybynamedouble(name);
 
-        //aaa
+
+            return MessageUtil.success("success", findcategorybynamedouble);
+
+        }
+
+
+        return MessageUtil.success("success", findcategorybyname);
+
     }
 }
+
+
 

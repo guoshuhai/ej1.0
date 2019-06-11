@@ -2,15 +2,18 @@ package com.briup.apps.ej.bean.extend;
 
 import com.briup.apps.ej.bean.Category;
 
+import java.util.List;
+
 public class CategoryExtend extends Category {
 
-        private  Category category;
-
-    public Category getCategory() {
-        return category;
+    public List<Category> getChildern() {
+        return childern;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setChildern(List<Category> childern) {
+        this.childern = childern;
     }
+
+    private List<Category> childern;
+
 }

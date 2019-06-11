@@ -96,5 +96,11 @@ public interface CategoryMapper {
      */
     int updateByPrimaryKey(Category record);
 
-        List<CategoryExtend> findcategorybyname(String name);
+
+        //通过名字模糊查找
+    CategoryExtend findcategorybyname( String name);
+
+    Category   findcategorybynamedouble(String name);
+
+
 }
