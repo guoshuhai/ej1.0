@@ -33,7 +33,7 @@ public class CommentController {
     }
     @ApiOperation("查询所有评论信息")
     @GetMapping("findAllcomment")
-    public Message findAllCustomer(){
+    public Message findAllcomment(){
         List<Comment> list = commentService.findAllcomment();
         return MessageUtil.success("success",list);
     }

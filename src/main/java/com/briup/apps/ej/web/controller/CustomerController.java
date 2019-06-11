@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("customer")
 public class CustomerController {
@@ -21,6 +23,13 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+
+    @ApiOperation("查询所有顾客信息")
+    @GetMapping("findAllCustomer")
+    public Message findAllCustomer(){
+        List<Customer> list = customerService.findAllcustomer();
+        return MessageUtil.success("success",list);
+    }
 
     @ApiOperation("通过主键查询")
     @GetMapping("selectById")
