@@ -303,9 +303,13 @@
 
       <select id="findAllcustomer" resultType="com.briup.apps.ej.bean.Customer">
     select *from ej_customer
-
   </select>
 
+
+    <select id="query" resultMap="BaseResultMap">
+      select * from ej_custome
+
+    </select>
 
 
 </mapper>

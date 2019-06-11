@@ -23,6 +23,30 @@ public class CommentController {
     @Autowired   //自动注入
     private CommentService commentService;
 
+
+
+    @ApiOperation("模糊查询")
+    @GetMapping("query")
+    public Message query(Comment comment){
+        List<Comment> list = commentService.query(comment);
+        return MessageUtil.success("success",list);
+    }
+    @ApiOperation("查询所有评论信息")
+    @GetMapping("findAllcomment")
+    public Message findAllCustomer(){
+        List<Comment> list = commentService.findAllcomment();
+        return MessageUtil.success("success",list);
+    }
+
+
+    @ApiOperation("通过ID查询携带订单信息的评论")
+    @GetMapping("selectAllById")
+    public Message selectAll(Long id) {
+        List<CommentExtend> list=commentService.selectAll(id);
+        return MessageUtil.success("sucess",list);
+
+    }
+
     @ApiOperation("通过主键查询")
     @GetMapping("selectById")
     public Message selectById(
@@ -57,12 +81,6 @@ public class CommentController {
         int update=commentService.updateByPrimaryKey(record);
         return MessageUtil.success("success",update);
     }
-    @ApiOperation("查询所有评论")
-    @GetMapping("selectAll")
-    public Message selectAll(Long id) {
-        List<CommentExtend> list=commentService.selectAll(id);
-        return MessageUtil.success("sucess",list);
 
-    }
 
 }

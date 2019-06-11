@@ -21,6 +21,9 @@ public interface CommentService {
         int updateByPrimaryKeySelective(Comment record);
         int updateByPrimaryKey(Comment record);
 
+        List <Comment>  query(Comment comment);
         List<CommentExtend> selectAll(Long id);
+
+        List <Comment>findAllcomment();
     }
 

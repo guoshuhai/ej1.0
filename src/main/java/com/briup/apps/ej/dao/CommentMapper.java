@@ -93,4 +93,12 @@ public interface CommentMapper {
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
     int updateByPrimaryKey(Comment record);
+
+    List<Comment> query( Comment comment);
+
+
+    //查询所有
+    List<Comment> findAllcomment();
+
+
 }

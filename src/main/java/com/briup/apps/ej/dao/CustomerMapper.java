@@ -93,8 +93,10 @@ public interface CustomerMapper {
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
     int updateByPrimaryKey(Customer record);
+    //模糊查询
+    List<Customer> query(Customer customer);
 
     //查询所有
     List<Customer> findAllcustomer();
-    //aaa
+
 }

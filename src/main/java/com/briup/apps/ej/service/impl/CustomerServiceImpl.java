@@ -59,11 +59,23 @@ public class CustomerServiceImpl implements CustomerService {
     public int updateByExample(Customer record, CustomerExample example) {
         return 0;
     }
+    //查询所有顾客信息
+    @Override
+    public List<Customer> findAllcustomer() {
+        return customerMapper.findAllcustomer();
+    }
+
+    //模糊查询顾客信息
+    @Override
+    public List<Customer> query(Customer customer) {
+        return customerMapper.query(customer);
+    }
 
     @Override
     public int updateByPrimaryKeySelective(Customer record) {
         return customerMapper.updateByPrimaryKey(record);
     }
+    //更新顾客信息数据
 
     @Override
     public int updateByPrimaryKey(Customer record) {

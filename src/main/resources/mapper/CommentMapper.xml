@@ -268,4 +268,23 @@
       order_id = #{orderId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+    <select id="query" resultMap="BaseResultMap">
+
+      select * from ej_comment
+      <where>
+        <if test="content != null">
+          content like concat('%',#{content} ,'%')
+        </if>
+        <if test="commentTime != null">
+          AND commentTime like concat('%',#{commentTime},'%')
+        </if>
+        <if test="orderId != null">
+          AND orderId = #{orderId}
+        </if>
+      </where>
+
+    </select>
+  <select id="findAllcomment" resultMap="BaseResultMap">
+        select *from ej_comment
+  </select>
 </mapper>

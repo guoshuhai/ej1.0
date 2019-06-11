@@ -32,4 +32,8 @@ public interface CustomerService {
     int updateByPrimaryKeySelective(Customer record);
 
     int updateByPrimaryKey(Customer record);
+
+    List <Customer> query(Customer customer);
+
+    List<Customer> findAllcustomer();
 }

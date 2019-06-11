@@ -83,9 +83,20 @@ public class CommentServiceImpl implements CommentService {
         return commentMapper.updateByPrimaryKey(record);
     }
 
+    //模糊查询
+    @Override
+    public List<Comment> query(Comment comment) {
+        return commentMapper.query(comment);
+    }
+
     @Override
     public List<CommentExtend> selectAll(Long id) {
 
         return commentExtendMapper.selectAll(id);
+    }
+
+    @Override
+    public List<Comment> findAllcomment() {
+        return commentMapper.findAllcomment();
     }
 }
