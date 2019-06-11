@@ -1,6 +1,7 @@
 package com.briup.apps.ej.service.impl;
 import com.briup.apps.ej.bean.Category;
 import com.briup.apps.ej.bean.CategoryExample;
+import com.briup.apps.ej.bean.extend.CategoryExtend;
 import com.briup.apps.ej.dao.CategoryMapper;
 import com.briup.apps.ej.service.CategoryService;
 import org.springframework.stereotype.Service;
@@ -62,6 +63,11 @@ public class CategoryServiceImpl  implements CategoryService {
     @Override
     public int updateByPrimaryKeySelective(Category record) {
         return 0;
+    }
+
+    @Override
+    public List<CategoryExtend> findcategorybyname(String name) {
+        return categoryMapper.findcategorybyname(name);
     }
 
     @Override

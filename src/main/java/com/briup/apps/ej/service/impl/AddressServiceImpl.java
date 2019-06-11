@@ -49,7 +49,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public Address selectByPrimaryKey(Long id) {
-        return selectByPrimaryKey(id);
+        return addressMapper.selectByPrimaryKey(id);
     }
 
     @Override

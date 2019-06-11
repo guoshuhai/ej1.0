@@ -1,6 +1,7 @@
 package com.briup.apps.ej.web.controller;
 
 import com.briup.apps.ej.bean.Category;
+import com.briup.apps.ej.bean.extend.CategoryExtend;
 import com.briup.apps.ej.service.CategoryService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("category")
@@ -72,6 +75,18 @@ public class CategoryController {
         return MessageUtil.success("success",insert);
 
     //aaa
+    }
+
+
+    @ApiOperation("findcategorybyname")
+    @GetMapping("findcategorybyname")
+    public Message findcategorybyname(String name) throws  Exception{
+
+        List<CategoryExtend> category = categoryService.findcategorybyname(name);
+
+        return MessageUtil.success("success",category);
+
+        //aaa
     }
 }
 
