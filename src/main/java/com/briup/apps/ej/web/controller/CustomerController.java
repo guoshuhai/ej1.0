@@ -70,6 +70,7 @@ public class CustomerController {
         customerService.batchDelete(ids);
         return MessageUtil.success("批量删除成功");
     }
+    //a
 }
 
 
