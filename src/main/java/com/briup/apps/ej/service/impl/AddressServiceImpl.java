@@ -17,15 +17,10 @@ public class AddressServiceImpl implements AddressService {
     private AddressMapper addressMapper;
 
 
-    @Override
-    public long countByExample(AddressExample example) {
-        return addressMapper.countByExample(example);
-    }
 
-    @Override
-    public int deleteByExample(AddressExample example) {
-        return addressMapper.deleteByExample(example);
-    }
+
+
+
 
     @Override
     public int deleteByPrimaryKey(Long id) throws Exception {
@@ -37,15 +32,7 @@ public class AddressServiceImpl implements AddressService {
         return addressMapper.insert(record)  ;
     }
 
-    @Override
-    public int insertSelective(Address record) {
-        return insertSelective(record);
-    }
 
-    @Override
-    public List<Address> selectByExample(AddressExample example) {
-        return addressMapper.selectByExample(example);
-    }
 
     @Override
     public Address selectByPrimaryKey(Long id) {
@@ -53,19 +40,12 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public int updateByExampleSelective(Address record, AddressExample example) {
-        return addressMapper.updateByExampleSelective(record,example);
+    public List<Address> query(Address address) {
+        return addressMapper.query(address);
     }
 
-    @Override
-    public int updateByExample(Address record, AddressExample example) {
-        return addressMapper.updateByExample(record,example);
-    }
 
-    @Override
-    public int updateByPrimaryKeySelective(Address record) {
-        return addressMapper.updateByPrimaryKeySelective(record);
-    }
+
 
     @Override
     public int updateByPrimaryKey(Address record) throws  Exception {

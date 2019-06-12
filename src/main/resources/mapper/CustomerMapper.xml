@@ -307,12 +307,6 @@
 
 
     <select id="query" resultMap="BaseResultMap">
-
-
+  select *from  ej_customer
     </select>
-
-
-
-
-
 </mapper>

@@ -103,4 +103,8 @@ public interface CategoryMapper {
     Category   findcategorybynamedouble(String name);
 
 
+    //查询所有
+       List<Category>  findAll();
+
+
 }

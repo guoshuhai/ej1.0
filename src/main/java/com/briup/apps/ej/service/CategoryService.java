@@ -98,9 +98,12 @@ public interface CategoryService {
 
 
             //模糊查询通过名字
-          CategoryExtend  findcategorybyname(String name);
+                  CategoryExtend  findcategorybyname(String name);
 
-        Category   findcategorybynamedouble(String name);
+              Category   findcategorybynamedouble(String name);
+            List<Category>  findAll();
+
+    void batchDelete(long[] ids) throws  Exception;
 
 
 }

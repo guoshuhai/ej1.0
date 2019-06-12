@@ -307,4 +307,7 @@
                 where name=#{name}
   </select>
 
+  <select id="findAll" resultMap="BaseResultMap"> select * from ej_category where parent_id is null</select>
+
+
 </mapper>

@@ -65,9 +65,25 @@ public class CategoryServiceImpl  implements CategoryService {
         return 0;
     }
 
+
+
+    public void batchDelete(long[] ids) throws  Exception{
+
+        for(long id:ids){
+            categoryMapper.deleteByPrimaryKey(id);
+        }
+    }
+
+
+
     @Override
     public Category findcategorybynamedouble(String name) {
         return categoryMapper.findcategorybynamedouble(name);
+    }
+
+    @Override
+    public List<Category> findAll() {
+        return categoryMapper.findAll();
     }
 
     @Override

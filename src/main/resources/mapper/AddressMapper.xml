@@ -319,5 +319,6 @@
   <select id="findAllAddress">
     select *from ej_address
   </select>
+    <select id="query" resultMap="BaseResultMap">    select *from ej_address</select>
 
 </mapper>

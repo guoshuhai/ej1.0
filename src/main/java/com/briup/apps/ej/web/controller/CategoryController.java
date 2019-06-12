@@ -8,9 +8,12 @@ import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -66,6 +69,20 @@ public class CategoryController {
     }
 
 
+
+    @ApiOperation("findAll")
+    @GetMapping("findAll")
+    public Message findAll() {
+
+        List<Category> all = categoryService.findAll();
+
+
+
+        return  MessageUtil.success("success",all);
+    }
+
+
+
     @ApiOperation("insert")
     @GetMapping("insert")
     public Message insert(Category record) throws  Exception{
@@ -98,8 +115,17 @@ public class CategoryController {
 
 
         return MessageUtil.success("success", findcategorybyname);
-
     }
+
+
+
+    @PostMapping("batchDelete")
+    @ApiOperation("批量删除分类信息")
+    public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
+        categoryService.batchDelete(ids);
+        return MessageUtil.success("批量删除成功");
+    }
+    //a
 }
 
 

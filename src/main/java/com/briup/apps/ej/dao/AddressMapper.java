@@ -97,4 +97,6 @@ public interface AddressMapper {
     //查询所有
     void findAllAddress(Address address);
 
+        List<Address> query (Address address);
+
 }

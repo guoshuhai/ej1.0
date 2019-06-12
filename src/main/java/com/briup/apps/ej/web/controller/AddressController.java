@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sun.misc.MessageUtils;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("Address")
 public class AddressController {
@@ -66,6 +68,17 @@ public class AddressController {
             return  MessageUtil.error("删除失败");
 
         }
+    }
+    @ApiOperation("query")
+    @GetMapping("query")
+    public Message  query(Address address ) throws Exception {
+
+        List<Address> query = AddressService.query(address);
+
+        return MessageUtil.success("success",query);
+
+
+
     }
 
 
