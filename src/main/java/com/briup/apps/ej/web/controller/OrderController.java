@@ -9,10 +9,7 @@ import com.sun.org.apache.xpath.internal.operations.Or;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -90,7 +87,7 @@ public class OrderController {
 
 
     @ApiOperation("批量删除")
-    @GetMapping("/betchDelete")
+    @PostMapping("/betchDelete")
     public Message betchDelete(@NotNull(message = "id不能为空")long[] ids) throws Exception{
      orderService.betchDelete(ids);
      return MessageUtil.success("批量删除成功");
