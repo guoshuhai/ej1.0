@@ -75,5 +75,11 @@ public class WaiterServiceImpl implements WaiterService {
             waiterMapper.deleteByPrimaryKey(id);
         }
     }
+    @Override
+    public void batchDelete(long[] ids) throws Exception {
+        for (long id : ids) {
+            waiterMapper.deleteByPrimaryKey(id);
+        }
+    }
 }
 

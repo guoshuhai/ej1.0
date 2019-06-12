@@ -15,6 +15,8 @@ import com.briup.apps.ej.utils.Message;
 import java.util.List;
 import com.briup.apps.ej.dao.extend.ProductExtendMapper;
 
+import javax.validation.constraints.NotNull;
+
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -69,6 +71,7 @@ public class ProductController {
         }
     }
 
+
     @ApiOperation("插入数据")
     @GetMapping("insert")
     public Message insert(Product product){
@@ -85,5 +88,11 @@ public class ProductController {
     public Message selectByPrimaryKey(@ApiParam(value = "主键",required = true) @RequestParam(value = "id") long id){
         ProductExtend productExtend=productService.selectByPrimaryKeyw(id);
         return MessageUtil.success("查询成功!",productExtend);
+    }
+    @ApiOperation("批量删除")
+    @GetMapping("/batchDelete")
+    public Message batchDelete(@NotNull(message = "id不能为空")long[] ids) throws Exception{
+        productService.batchDelete(ids);
+        return MessageUtil.success("批量删除成功");
     }
 }

@@ -13,14 +13,18 @@ public interface ProductService {
 
     Product findById(long id);
 
+
     void saveOrUpdate(Product product) throws Exception ;
 //    插入数据
     void insert(Product product) throws  Exception;
 
 
+
 //    根据Id删除
     void deleteById(long id) throws Exception ;
+    void batchDelete(long[] ids) throws  Exception;
+
 //    根据主键删除
 
-    ProductExtend selectByPrimaryKeyw(Long id);
+    ProductExtend selectByPrimaryKeyw(long id);
 }

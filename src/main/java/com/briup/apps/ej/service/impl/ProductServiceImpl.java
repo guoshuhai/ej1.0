@@ -48,6 +48,7 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.selectByPrimaryKey(id);
     }
 
+
     @Override
     public void saveOrUpdate(Product product) throws Exception {
         if (product.getId() == null) {
@@ -81,7 +82,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductExtend selectByPrimaryKeyw(Long id) {
+    public void batchDelete(long[] ids) throws Exception {
+        for (long id : ids) {
+            productMapper.deleteByPrimaryKey(id);
+        }
+    }
+
+    @Override
+    public ProductExtend selectByPrimaryKeyw(long id) {
         return productExtendMapper.selectByPrimaryKeyw(id);
     }
+
 }
