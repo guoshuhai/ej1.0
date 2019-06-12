@@ -7,10 +7,7 @@ import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.briup.apps.ej.utils.Message;
 import java.util.List;
 import com.briup.apps.ej.dao.extend.ProductExtendMapper;
@@ -90,7 +87,7 @@ public class ProductController {
         return MessageUtil.success("查询成功!",productExtend);
     }
     @ApiOperation("批量删除")
-    @GetMapping("/batchDelete")
+    @PostMapping("/batchDelete")
     public Message batchDelete(@NotNull(message = "id不能为空")long[] ids) throws Exception{
         productService.batchDelete(ids);
         return MessageUtil.success("批量删除成功");
