@@ -25,5 +25,5 @@ public interface CommentService {
         List<CommentExtend> selectAll(Long id);
 
         List <Comment>findAllcomment();
-    }
+}
 

@@ -71,29 +71,6 @@ public class CustomerController {
         return MessageUtil.success("批量删除成功");
     }
     //a
-    @ApiOperation("用户登陆")
-    @GetMapping("login")
-        public  Message  login(String realname,String password){
-
-          if (realname==null||password==null){
-              return  MessageUtil.error("登录失败，用户名不能为空或密码不能为空");
-          }
-            customerService.login(realname,password);
-               return  MessageUtil.success("登录成功");
-
-
-        }
-    @ApiOperation("用户注册")
-    @GetMapping("regist")
-    public  Message  regist(Customer customer){
-
-                customerService.regist(customer);
-        return  MessageUtil.success("注册成功");
-
-
-    }
-
-
 }
 
 
