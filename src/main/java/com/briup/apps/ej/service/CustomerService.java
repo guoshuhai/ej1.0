@@ -39,6 +39,7 @@ public interface CustomerService {
 
      void batchDelete(long[] ids) throws  Exception;
 
+
      public void regist(Customer customer );
 
      public void login(@Param("realname")String realname, @Param("password")String password);

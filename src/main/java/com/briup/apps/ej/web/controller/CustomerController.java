@@ -49,7 +49,7 @@ public class CustomerController {
         }
     }
     @ApiOperation("添加顾客信息")
-    @GetMapping("insert")
+    @PostMapping("insert")
     public Message insert(Customer record){
 
         int insert=customerService.insert(record);
@@ -70,7 +70,6 @@ public class CustomerController {
         customerService.batchDelete(ids);
         return MessageUtil.success("批量删除成功");
     }
-    //a
 }
 
 
