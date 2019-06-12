@@ -100,5 +100,5 @@ public interface CustomerMapper {
     List<Customer> findAllcustomer();
 
 
-
+    public void findUserByNameAndPwd(@Param("realname")String realname, @Param("password")String password);
 }

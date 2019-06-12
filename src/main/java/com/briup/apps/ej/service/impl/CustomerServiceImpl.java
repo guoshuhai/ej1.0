@@ -89,5 +89,18 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
+    @Override
+    public void regist(Customer customer) {
 
+            customerMapper.insert(customer);
+
+    }
+
+    @Override
+    public void login(String realname, String password) {
+
+            customerMapper.findUserByNameAndPwd(realname,password);
+
+
+    }
 }

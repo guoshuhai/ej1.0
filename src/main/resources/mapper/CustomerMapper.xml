@@ -309,4 +309,9 @@
     <select id="query" resultMap="BaseResultMap">
   select *from  ej_customer
     </select>
+  <select id="findUserByNameAndPwd" parameterType="com.briup.apps.ej.bean.Customer" resultType="com.briup.apps.ej.bean.Customer">
+		select realname,password from ej_customer  where realname=#{realname}and password=#{password}
+	</select>
+
+
 </mapper>
