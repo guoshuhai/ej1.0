@@ -7,6 +7,7 @@ import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import jdk.nashorn.internal.objects.annotations.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -70,6 +71,32 @@ public class CustomerController {
         customerService.batchDelete(ids);
         return MessageUtil.success("批量删除成功");
     }
+
+    @GetMapping("login")
+    @ApiOperation("login")
+    public Message login(String realname,String password) throws Exception{
+        Customer userByNameAndPwd = customerService.findUserByNameAndPwd(realname, password);
+        if (userByNameAndPwd!=null){
+            return MessageUtil.success("success");
+        }
+       return MessageUtil.error("error");
+    }
+
+
+    @GetMapping("regist")
+    @ApiOperation("regist")
+    public Message regist(String realname) {
+        Customer byCustromName = customerService.findByCustromName(realname);
+        if (byCustromName == null) {
+
+            customerService.insert(byCustromName);
+            return MessageUtil.success("注册成功");
+        }
+        else {
+            return MessageUtil.error("用户已存在");
+        }
+    }
+
 }
 
 

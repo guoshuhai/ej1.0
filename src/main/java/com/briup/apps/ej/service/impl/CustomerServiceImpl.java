@@ -12,6 +12,7 @@ import java.util.List;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
+
     @Resource
     private CustomerMapper customerMapper;
 
@@ -59,6 +60,7 @@ public class CustomerServiceImpl implements CustomerService {
     public int updateByExample(Customer record, CustomerExample example) {
         return 0;
     }
+
     //查询所有顾客信息
     @Override
     public List<Customer> findAllcustomer() {
@@ -82,9 +84,9 @@ public class CustomerServiceImpl implements CustomerService {
         return customerMapper.updateByPrimaryKey(record);
     }
 
-    public void batchDelete(long[] ids) throws  Exception{
+    public void batchDelete(long[] ids) throws Exception {
 
-        for(long id:ids){
+        for (long id : ids) {
             customerMapper.deleteByPrimaryKey(id);
         }
     }
@@ -92,15 +94,20 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void regist(Customer customer) {
 
-            customerMapper.insert(customer);
-
+        customerMapper.insert(customer);
     }
 
-    @Override
-    public void login(String realname, String password) {
+        @Override
+        public Customer findUserByNameAndPwd(String realname, String password) {
+            return customerMapper.findUserByNameAndPwd(realname,password);
+        }
 
-            customerMapper.findUserByNameAndPwd(realname,password);
+        @Override
+        public Customer findByCustromName(String realname) {
+
+            return customerMapper.findByCustromName(realname);
+        }
 
 
-    }
+
 }

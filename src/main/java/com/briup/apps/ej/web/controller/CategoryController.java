@@ -30,6 +30,7 @@ public class CategoryController {
         Category category = categoryService.selectByPrimaryKey(id);
         if (category.getId()!=null){
 
+        categoryService.deleteByPrimaryKey(id);
         return MessageUtil.success("success");
 
     }else{
@@ -84,7 +85,7 @@ public class CategoryController {
 
 
     @ApiOperation("insert")
-    @GetMapping("insert")
+    @PostMapping("insert")
     public Message insert(Category record) throws  Exception{
 
 

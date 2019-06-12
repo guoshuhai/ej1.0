@@ -1,5 +1,9 @@
 package com.briup.apps.ej.bean;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotBlank;
+
 public class Customer {
     /**
      *
@@ -26,6 +30,8 @@ public class Customer {
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
+//    @NotBlank(message = "密码不能为空")
+//    @Length(min = 5, max = 17, message = "密码长度在[5,17]之间")
     private String password;
 
     /**
@@ -35,6 +41,7 @@ public class Customer {
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
+//    @NotBlank(message = "用户名不能为空")
     private String realname;
 
     /**

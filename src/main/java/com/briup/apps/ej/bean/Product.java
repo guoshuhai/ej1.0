@@ -1,5 +1,8 @@
 package com.briup.apps.ej.bean;
 
+
+import javax.validation.constraints.NotBlank;
+
 public class Product {
     /**
      *
@@ -17,6 +20,7 @@ public class Product {
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
+//    @NotBlank(message = "用户不能为空")
     private String name;
 
     /**
@@ -26,6 +30,7 @@ public class Product {
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
+
     private String description;
 
     /**
@@ -35,6 +40,8 @@ public class Product {
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
+
+//    @NotBlank(message = "价格")
     private Double price;
 
     /**

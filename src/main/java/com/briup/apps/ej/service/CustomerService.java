@@ -40,9 +40,14 @@ public interface CustomerService {
      void batchDelete(long[] ids) throws  Exception;
 
 
-     public void regist(Customer customer );
+     void regist(Customer customer );
 
-     public void login(@Param("realname")String realname, @Param("password")String password);
+    Customer findUserByNameAndPwd(String realname,String password);
+
+    Customer findByCustromName(String realname);
+
+
+
 
 
 
