@@ -308,6 +308,19 @@
   </select>
 
   <select id="findAll" resultMap="BaseResultMap"> select * from ej_category where parent_id is null</select>
+    <select id="query" resultMap="BaseResultMap">
+        select * from ej_category
+        <where>
+          <if test="name != null">
+            name like concat('%',#{name} ,'%')
+          </if>
+          <if test="num != null">
+            AND num like concat('%',#{num},'%')
+          </if>
+
+        </where>
+
+      </select>
 
 
 </mapper>

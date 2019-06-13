@@ -87,6 +87,11 @@ public class CategoryServiceImpl  implements CategoryService {
     }
 
     @Override
+    public List<Category> query(Category category) {
+        return categoryMapper.query(category);
+    }
+
+    @Override
     public CategoryExtend findcategorybyname(String name) {
         return categoryMapper.findcategorybyname(name);
     }
@@ -95,4 +100,5 @@ public class CategoryServiceImpl  implements CategoryService {
     public int updateByPrimaryKey(Category record) throws  Exception {
         return categoryMapper.updateByPrimaryKey(record);
     }
+
 }
