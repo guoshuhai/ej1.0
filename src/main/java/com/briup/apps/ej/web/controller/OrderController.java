@@ -48,7 +48,7 @@ public class OrderController {
     }
 
     @ApiOperation("不输入id进行插入")
-    @GetMapping("/insert")
+    @PostMapping("/insert")
     public  Message  insert(Order record){
         try {
             orderService.insert(record);
@@ -60,7 +60,7 @@ public class OrderController {
     }
 
     @ApiOperation("输入id进行更新")
-    @GetMapping("/updateByPrimaryKey")
+    @PostMapping("/updateByPrimaryKey")
     public Message updateByPrimaryKey(Order record){
         try {
             orderService.updateByPrimaryKey(record);
