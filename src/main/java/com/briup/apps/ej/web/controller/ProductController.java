@@ -88,7 +88,7 @@ public class ProductController {
     }
     @ApiOperation("通过主键查询")
     @GetMapping("/selectByPrimaryKeyw")
-    public Message selectByPrimaryKeywnh(@ApiParam(value = "主键",required = true) @RequestParam(value = "id") long id){
+    public Message selectByPrimaryKeyw(@ApiParam(value = "主键",required = true) @RequestParam(value = "id") long id){
         ProductExtend productExtend=productService.selectByPrimaryKeyw(id);
         return MessageUtil.success("查询成功!",productExtend);
     }

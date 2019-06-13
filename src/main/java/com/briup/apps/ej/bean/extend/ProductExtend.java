@@ -5,15 +5,17 @@ import com.briup.apps.ej.bean.Product;
 
 public class ProductExtend extends Product {
 
-    private Category category_id;
+    private Category categorys;
 
-    public Category getCategory_id() {
-        return category_id;
+    public Category getCategorys() {
+        return categorys;
     }
 
-    public void setCategory_id(Category category_id) {
-        this.category_id = category_id;
+    public void setCategorys(Category categorys) {
+        this.categorys = categorys;
     }
 }
+
+
 
 

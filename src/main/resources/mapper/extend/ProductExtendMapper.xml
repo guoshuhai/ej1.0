@@ -6,14 +6,14 @@
     <select id="selectByPrimaryKeyw" resultMap="selectByPrimary">
 select
         d.id as d_id,
-        d.name ,
+        d.name,
         d.description,
         d.price,
         d.status,
         d.photo,
         d.category_id,
         t.id as t_id,
-        t.name,
+        t.name tname,
         t.num,
         t.parent_id
         from ej_product d left join ej_category t
@@ -28,9 +28,9 @@ select
         <result column="status" property="status"/>
         <result column="photo" property="photo"/>
         <result column="category_id" property="categoryId"/>
-        <association property="category_id" column="category_id" javaType="com.briup.apps.ej.bean.Category">
-            <id column="category_id" property="id"/>
-            <result column="name" property="name"/>
+        <association property="categorys" javaType="com.briup.apps.ej.bean.Category">
+            <id column="t_id" property="id"/>
+            <result column="tname" property="name"/>
             <result column="num" property="num"/>
             <result column="parent_id" property="parentId"/>
         </association>
