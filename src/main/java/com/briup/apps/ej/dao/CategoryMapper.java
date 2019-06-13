@@ -1,5 +1,6 @@
 package com.briup.apps.ej.dao;
 
+import com.briup.apps.ej.bean.Address;
 import com.briup.apps.ej.bean.Category;
 import com.briup.apps.ej.bean.CategoryExample;
 import java.util.List;
@@ -105,6 +106,10 @@ public interface CategoryMapper {
 
     //查询所有
        List<Category>  findAll();
+
+       //模糊查询
+
+    List<Category> query (Category category);
 
 
 }

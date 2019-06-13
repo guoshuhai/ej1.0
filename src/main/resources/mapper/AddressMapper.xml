@@ -316,9 +316,33 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
 
-  <select id="findAllAddress">
+  <select id="findAllAddress" resultMap="BaseResultMap">
     select *from ej_address
   </select>
-    <select id="query" resultMap="BaseResultMap">    select *from ej_address</select>
+    <select id="query" resultMap="BaseResultMap">
+      select * from ej_address
+      <where>
+        <if test="province != null">
+          province like concat('%',#{province} ,'%')
+        </if>
+        <if test="city != null">
+          AND city like concat('%',#{city},'%')
+        </if>
+
+        <if test="area != null">
+          AND area like concat('%',#{area},'%')
+        </if>
+
+        <if test="address != null">
+          AND address like concat('%',#{address},'%')
+        </if>
+        <if test="telephone != null">
+          AND telephone like concat('%',#{telephone},'%')
+        </if>
+
+      </where>
+
+    </select>
+
 
 </mapper>

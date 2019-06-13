@@ -50,4 +50,11 @@ public class AddressServiceImpl implements AddressService {
     public int updateByPrimaryKey(Address record) throws  Exception {
         return addressMapper.updateByPrimaryKey(record);
     }
+
+    @Override
+    public List<Address> findAlladdress() {
+
+      return   addressMapper.findAllAddress();
+
+    }
 }

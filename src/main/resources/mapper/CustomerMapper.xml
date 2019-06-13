@@ -307,13 +307,36 @@
 
 
     <select id="query" resultMap="BaseResultMap">
-  select *from  ej_customer
-    </select>
+
+        select * from ej_customer
+        <where>
+          <if test="telephone != null">
+            telephone like concat('%',#{telephone} ,'%')
+          </if>
+          <if test="password != null">
+            AND password like concat('%',#{password},'%')
+          </if>
+
+          <if test="realname != null">
+            AND realname like concat('%',#{realname},'%')
+          </if>
+
+          <if test="status != null">
+            AND status like concat('%',#{status},'%')
+          </if>
+          <if test="address != null">
+            AND address like concat('%',#{address},'%')
+          </if>
+
+        </where>
+
+      </select>
+
   <select id="findUserByNameAndPwd" resultType="com.briup.apps.ej.bean.Customer">
-		select realname,password from ej_customer   realname=#{realname} and password=#{password}
+		select realname,password from ej_customer where  realname=#{realname} and password=#{password}
 	</select>
   <select id="findByCustromName" resultMap="BaseResultMap">
-  select*from ej_customer from ej_customer  where realname=#{realname}
+  select*from ej_customer   where realname=#{realname}
   </select>
 
 

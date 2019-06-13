@@ -5,15 +5,18 @@ import com.briup.apps.ej.bean.Address;
 import com.briup.apps.ej.service.AddressService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import sun.misc.MessageUtils;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
-
+@Api(description = "地址管理相关的接口")
+@Validated
 @RestController
 @RequestMapping("Address")
 public class AddressController {
@@ -22,30 +25,30 @@ public class AddressController {
     private AddressService AddressService;
 
 
-    @ApiOperation("insert")
-    @GetMapping("insert")
-    public Message   insert(Address record) throws  Exception{
-    try {
-        AddressService.insert(record);
-        return MessageUtil.success("success");
-    }
-        catch (Exception e){
-         throw new Exception(e.getMessage());
+    @ApiOperation("添加地址")
+    @PostMapping("insert")
+    public Message   insert(@Valid @ModelAttribute("record") Address record) throws  Exception{
+        Address address = AddressService.selectByPrimaryKey(record.getId());
+        if (address==null) {
+            AddressService.insert(record);
 
+            return MessageUtil.success("success");
+        }else {
+            return MessageUtil.error("id已存在");
         }
     }
 
-    @ApiOperation("select")
+    @ApiOperation("查询地址")
     @GetMapping("select")
-    public Message  selectByPrimaryKey(Long id){
+    public Message  selectByPrimaryKey(@NotNull @RequestParam("id")Long id){
 
         Address address = AddressService.selectByPrimaryKey(id);
         return MessageUtil.success("success",address);
     }
 
-    @ApiOperation("delete")
+    @ApiOperation("删除地址")
     @GetMapping("delete")
-    public Message deleteByPrimaryKey(Long id) throws  Exception {
+    public Message deleteByPrimaryKey(@NotNull @RequestParam("id") Long id) throws  Exception {
         Address address = AddressService.selectByPrimaryKey(id);
 
         if (address.getId() != null) {
@@ -57,19 +60,20 @@ public class AddressController {
     }
 
 
-        @ApiOperation("update")
+        @ApiOperation("更新地址")
         @GetMapping("update")
-    public Message  updateByPrimaryKey(Address record) throws Exception {
-        try {
-            AddressService.updateByPrimaryKey(record);
-            return MessageUtil.success("success");
-        }catch (Exception e){
-            e.printStackTrace();
-            return  MessageUtil.error("删除失败");
+    public Message  updateByPrimaryKey( Address record) throws Exception {
+            Address address = AddressService.selectByPrimaryKey(record.getId());
+            if (address!=null) {
+                AddressService.updateByPrimaryKey(record);
 
-        }
+                return MessageUtil.success("success");
+            }else {
+                return MessageUtil.error("用户不存在");
+            }
+
     }
-    @ApiOperation("query")
+    @ApiOperation("模糊查询地址")
     @GetMapping("query")
     public Message  query(Address address ) throws Exception {
 
@@ -81,5 +85,16 @@ public class AddressController {
 
     }
 
+    @ApiOperation("查询所有地址信息")
+    @GetMapping("findAllAddress")
+    public Message  findAllAddress() throws Exception {
+
+        List<Address> alladdress = AddressService.findAlladdress();
+
+        return MessageUtil.success("success",alladdress);
+
+
+
+    }
 
 }

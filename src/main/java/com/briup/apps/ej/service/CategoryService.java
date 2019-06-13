@@ -105,5 +105,5 @@ public interface CategoryService {
 
     void batchDelete(long[] ids) throws  Exception;
 
-
+    List<Category> query (Category category);
 }

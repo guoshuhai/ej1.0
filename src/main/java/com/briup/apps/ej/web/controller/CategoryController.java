@@ -2,20 +2,23 @@ package com.briup.apps.ej.web.controller;
 
 import com.briup.apps.ej.bean.Category;
 import com.briup.apps.ej.bean.extend.CategoryExtend;
+import com.briup.apps.ej.dao.CategoryMapper;
 import com.briup.apps.ej.service.CategoryService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@Api(description = "分类管理相关的接口")
+@Validated
 @RestController
 @RequestMapping("category")
 public class CategoryController {
@@ -23,9 +26,9 @@ public class CategoryController {
     private CategoryService categoryService;
 
 
-    @ApiOperation("delete")
+    @ApiOperation("删除分类")
     @GetMapping("delete")
-    public Message deleteByPrimaryKey(Long id) throws  Exception{
+    public Message deleteByPrimaryKey(@NotNull @RequestParam("id") Long id) throws  Exception{
 
         Category category = categoryService.selectByPrimaryKey(id);
         if (category.getId()!=null){
@@ -41,28 +44,21 @@ public class CategoryController {
 
 
 
-    @ApiOperation("update")
+    @ApiOperation("通过id更新分类")
     @GetMapping("update")
-    public Message updateByPrimaryKey(Category record) throws  Exception{
-    try {
-        int i = categoryService.updateByPrimaryKey(record);
-
-        return MessageUtil.success("success",i);
-
-    }catch (Exception e){
-        e.printStackTrace();
-        return  MessageUtil.error(e.getMessage());
-
-    }
-
-//a
-
+    public Message updateByPrimaryKey( Category record) throws  Exception{
+        Category category = categoryService.selectByPrimaryKey(record.getId());
+        if (category!=null) {
+            categoryService.updateByPrimaryKey(record);
+            return MessageUtil.success("更新成功");
+        }else{
+        return MessageUtil.success("id不存在");}
     }
 
 
-    @ApiOperation("select")
+    @ApiOperation("通过id查询分类")
     @GetMapping("select")
-    public Message selectByPrimaryKey(Long id){
+    public Message selectByPrimaryKey(@NotNull @RequestParam("id") Long id){
 
         Category i = categoryService.selectByPrimaryKey(id);
 
@@ -71,7 +67,7 @@ public class CategoryController {
 
 
 
-    @ApiOperation("findAll")
+    @ApiOperation("查询所有分类")
     @GetMapping("findAll")
     public Message findAll() {
 
@@ -84,25 +80,24 @@ public class CategoryController {
 
 
 
-    @ApiOperation("insert")
+    @ApiOperation("添加分类")
     @PostMapping("insert")
-    public Message insert(Category record) throws  Exception{
+    public Message insert(@Valid @ModelAttribute("record") Category record) throws  Exception{
 
-
-
-        int insert = categoryService.insert(record);
-
-        return MessageUtil.success("success",insert);
-
-    //aaa
+        Category category = categoryService.selectByPrimaryKey(record.getId());
+        if (category==null) {
+            categoryService.insert(record);
+            return MessageUtil.success("添加成功");
+        }else{
+            return MessageUtil.success("id已存在");}
     }
 
 
 
 
-    @ApiOperation("findcategorybyname")
+    @ApiOperation("通过名子查询分类")
     @GetMapping("findcategorybyname")
-    public Message findcategorybyname(String name) throws  Exception {
+    public Message findcategorybyname(@Valid @ModelAttribute("name") String name) throws  Exception {
 
 
             CategoryExtend findcategorybyname = categoryService.findcategorybyname(name);
@@ -122,11 +117,18 @@ public class CategoryController {
 
     @PostMapping("batchDelete")
     @ApiOperation("批量删除分类信息")
-    public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
+    public Message batchDelete(@NotNull(message = "ids不能为空") @RequestParam("ids") long[] ids) throws Exception{
         categoryService.batchDelete(ids);
         return MessageUtil.success("批量删除成功");
     }
-    //a
+    //
+
+    @GetMapping("query")
+    @ApiOperation("模糊查询")
+    public Message query(Category category) throws Exception{
+            List<Category> list=categoryService.query(category);
+        return MessageUtil.success("success",list);
+    }
 }
 
 

@@ -90,4 +90,7 @@ public interface AddressService {
     int updateByPrimaryKey(Address record) throws  Exception;
     List<Address> query(Address address);
 
+
+       List<Address>  findAlladdress();
+
 }

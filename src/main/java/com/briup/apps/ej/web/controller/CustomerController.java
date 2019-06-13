@@ -41,6 +41,16 @@ public class CustomerController {
 //        Customer customer=customerService.selectByPrimaryKey(id);
         return MessageUtil.success("success",customer);
     }
+
+
+    @ApiOperation("query")
+    @GetMapping("query")
+    public Message query(Customer customer){
+        List<Customer> list=customerService.query(customer);
+        return MessageUtil.success("success",list);
+    }
+
+
     @ApiOperation("通过id删除信息")
     @GetMapping("deleteById")
     public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") Long id){
@@ -54,7 +64,7 @@ public class CustomerController {
     }
     @ApiOperation("添加顾客信息")
     @PostMapping("insert")
-    public Message insert(Customer record){
+    public Message insert(Customer record) throws Exception{
 
         int insert=customerService.insert(record);
         return MessageUtil.success("success",insert);
@@ -62,7 +72,7 @@ public class CustomerController {
 
     @ApiOperation("更新顾客信息")
     @GetMapping("update")
-    public Message updateByExampleSelective(Customer record){
+    public Message updateByExampleSelective(Customer record) throws Exception{
 
         int updateByExampleSelective=customerService.insert(record);
         return MessageUtil.success("success",updateByExampleSelective);
@@ -79,20 +89,26 @@ public class CustomerController {
     @ApiOperation("login")
     public Message login(String realname,String password) throws Exception{
         Customer userByNameAndPwd = customerService.findUserByNameAndPwd(realname, password);
+
         if (userByNameAndPwd!=null){
-            return MessageUtil.success("success");
+            System.out.println("登录成功");
+            return MessageUtil.success("登录成功");
+
+        }else {
+
+            return MessageUtil.error("登录失败");
         }
-       return MessageUtil.error("error");
     }
 
 
     @GetMapping("regist")
     @ApiOperation("regist")
-    public Message regist(String realname) {
+    public Message regist(Customer customer)  throws  Exception{
+        String realname=customer.getRealname();
         Customer byCustromName = customerService.findByCustromName(realname);
         if (byCustromName == null) {
 
-            customerService.insert(byCustromName);
+            customerService.insert(customer);
             return MessageUtil.success("注册成功");
         }
         else {

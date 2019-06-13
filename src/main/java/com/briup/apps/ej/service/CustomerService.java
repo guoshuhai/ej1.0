@@ -15,9 +15,9 @@ public interface CustomerService {
 
     int deleteByExample(CustomerExample example);
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Long id) throws Exception;
 
-    int insert(Customer record);
+    int insert(Customer record) throws  Exception;
 
     int insertSelective(Customer record);
 
@@ -40,11 +40,13 @@ public interface CustomerService {
      void batchDelete(long[] ids) throws  Exception;
 
 
-     void regist(Customer customer );
+     void regist(Customer customer ) throws Exception;
 
     Customer findUserByNameAndPwd(String realname,String password);
 
     Customer findByCustromName(String realname);
+
+
 
 
 
