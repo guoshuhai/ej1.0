@@ -76,20 +76,26 @@ public class CustomerController {
     @ApiOperation("login")
     public Message login(String realname,String password) throws Exception{
         Customer userByNameAndPwd = customerService.findUserByNameAndPwd(realname, password);
+
         if (userByNameAndPwd!=null){
-            return MessageUtil.success("success");
+            System.out.println("登录成功");
+            return MessageUtil.success("登录成功");
+
+        }else {
+
+            return MessageUtil.error("登录失败");
         }
-       return MessageUtil.error("error");
     }
 
 
     @GetMapping("regist")
     @ApiOperation("regist")
-    public Message regist(String realname) {
+    public Message regist(Customer customer) {
+        String realname=customer.getRealname();
         Customer byCustromName = customerService.findByCustromName(realname);
         if (byCustromName == null) {
 
-            customerService.insert(byCustromName);
+            customerService.insert(customer);
             return MessageUtil.success("注册成功");
         }
         else {

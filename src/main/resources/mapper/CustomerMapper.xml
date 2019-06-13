@@ -310,10 +310,10 @@
   select *from  ej_customer
     </select>
   <select id="findUserByNameAndPwd" resultType="com.briup.apps.ej.bean.Customer">
-		select realname,password from ej_customer   realname=#{realname} and password=#{password}
+		select realname,password from ej_customer where  realname=#{realname} and password=#{password}
 	</select>
   <select id="findByCustromName" resultMap="BaseResultMap">
-  select*from ej_customer from ej_customer  where realname=#{realname}
+  select*from ej_customer   where realname=#{realname}
   </select>
 
 
