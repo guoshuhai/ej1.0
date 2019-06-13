@@ -7,15 +7,21 @@ import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.briup.apps.ej.utils.Message;
 import java.util.List;
 import com.briup.apps.ej.dao.extend.ProductExtendMapper;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("/product")
+@Validated
+
+
+
 public class ProductController {
 
     @Autowired
@@ -30,7 +36,7 @@ public class ProductController {
         return MessageUtil.success("success",list);
     }
 
-
+    @ApiOperation("查询所有")
     @GetMapping("findAll")
     public Message findAll(){
         List<Product> list = productService.findAll();
@@ -46,9 +52,9 @@ public class ProductController {
     }
     @ApiOperation("保存或更新用户信息")
     @GetMapping("saveOrUpdate")
-    public Message saveOrUpdate(Product user){
+    public Message saveOrUpdate(@Valid @ModelAttribute  Product product){
         try {
-            productService.saveOrUpdate(user);
+            productService.saveOrUpdate(product);
             return MessageUtil.success("保存成功!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,7 +64,7 @@ public class ProductController {
 
     @ApiOperation("通过id删除用户信息")
     @GetMapping("deleteById")
-    public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
+    public Message deleteById(@NotNull @ApiParam(value = "主键",required = true) @RequestParam("id") long id){
         try {
             productService.deleteById(id);
             return MessageUtil.success("删除成功!");
@@ -70,7 +76,7 @@ public class ProductController {
 
 
     @ApiOperation("插入数据")
-    @GetMapping("insert")
+    @PostMapping("insert")
     public Message insert(Product product){
         try {
             productService.insert(product);
@@ -80,16 +86,21 @@ public class ProductController {
             return  MessageUtil.error(e.getMessage());
         }
     }
-
+    @ApiOperation("通过主键查询")
     @GetMapping("/selectByPrimaryKeyw")
-    public Message selectByPrimaryKey(@ApiParam(value = "主键",required = true) @RequestParam(value = "id") long id){
+    public Message selectByPrimaryKeywnh(@ApiParam(value = "主键",required = true) @RequestParam(value = "id") long id){
         ProductExtend productExtend=productService.selectByPrimaryKeyw(id);
         return MessageUtil.success("查询成功!",productExtend);
     }
     @ApiOperation("批量删除")
     @PostMapping("/batchDelete")
-    public Message batchDelete(@NotNull(message = "id不能为空")long[] ids) throws Exception{
+    public Message batchDelete(@NotNull  (message = "id不能为空")long[] ids) throws Exception{
         productService.batchDelete(ids);
         return MessageUtil.success("批量删除成功");
     }
+
+
+//    校验器
+
+
 }

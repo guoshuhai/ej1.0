@@ -203,8 +203,8 @@
       <if test="photo != null">
         #{photo,jdbcType=VARCHAR},
       </if>
-      <if test="categoryId != null">
-        #{categoryId,jdbcType=BIGINT},
+      <if test="category_id != null">
+        #{category_id,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -245,8 +245,8 @@
       <if test="record.photo != null">
         photo = #{record.photo,jdbcType=VARCHAR},
       </if>
-      <if test="record.categoryId != null">
-        category_id = #{record.categoryId,jdbcType=BIGINT},
+      <if test="record.category_id != null">
+        category_id = #{record.category_id,jdbcType=BIGINT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -294,8 +294,8 @@
       <if test="photo != null">
         photo = #{photo,jdbcType=VARCHAR},
       </if>
-      <if test="categoryId != null">
-        category_id = #{categoryId,jdbcType=BIGINT},
+      <if test="category_id != null">
+        category_id = #{category_id,jdbcType=BIGINT},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}

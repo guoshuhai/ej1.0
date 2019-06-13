@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-@RequestMapping("/waitter")
+@RequestMapping("/waiter")
 public class WaiterServiceImpl implements WaiterService {
     @Resource
     private WaiterMapper waiterMapper;

@@ -16,7 +16,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("waiter")
-public class WaiterController {
+public class
+WaiterController {
 
 
     @Autowired
@@ -29,7 +30,7 @@ public class WaiterController {
         return MessageUtil.success("success",list);
     }
 
-
+        @ApiOperation("查询所有")
         @GetMapping("findAll")
         public Message findAll(){
 
@@ -72,7 +73,7 @@ public class WaiterController {
     }
 
     @ApiOperation("插入数据")
-    @GetMapping("insert")
+    @PostMapping("insert")
     public Message insert(Waiter waiter){
         try {
             waiterService.insert(waiter);

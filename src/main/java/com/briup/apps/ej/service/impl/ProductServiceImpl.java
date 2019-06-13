@@ -5,6 +5,8 @@ import com.briup.apps.ej.bean.ProductExample;
 import com.briup.apps.ej.bean.extend.ProductExtend;
 import com.briup.apps.ej.dao.ProductMapper;
 import com.briup.apps.ej.service.ProductService;
+import com.briup.apps.ej.utils.Message;
+import com.briup.apps.ej.utils.MessageUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.briup.apps.ej.dao.extend.ProductExtendMapper;
@@ -92,5 +94,8 @@ public class ProductServiceImpl implements ProductService {
     public ProductExtend selectByPrimaryKeyw(long id) {
         return productExtendMapper.selectByPrimaryKeyw(id);
     }
+
+
+
 
 }

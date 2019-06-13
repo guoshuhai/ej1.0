@@ -13,7 +13,9 @@ select
         d.photo,
         d.category_id,
         t.id as t_id,
-        t.name
+        t.name,
+        t.num,
+        t.parent_id
         from ej_product d left join ej_category t
         on d.category_id=t.id
         where d.id=#{id}
@@ -26,9 +28,11 @@ select
         <result column="status" property="status"/>
         <result column="photo" property="photo"/>
         <result column="category_id" property="categoryId"/>
-        <association property="category_id" javaType="com.briup.apps.ej.bean.Category">
-            <id column="t_id" property="id"/>
+        <association property="category_id" column="category_id" javaType="com.briup.apps.ej.bean.Category">
+            <id column="category_id" property="id"/>
             <result column="name" property="name"/>
+            <result column="num" property="num"/>
+            <result column="parent_id" property="parentId"/>
         </association>
     </resultMap>
 

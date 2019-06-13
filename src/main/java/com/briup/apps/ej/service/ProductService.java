@@ -27,4 +27,5 @@ public interface ProductService {
 //    根据主键删除
 
     ProductExtend selectByPrimaryKeyw(long id);
+
 }
