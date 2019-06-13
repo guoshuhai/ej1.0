@@ -61,7 +61,7 @@ public class AddressController {
 
 
         @ApiOperation("更新地址")
-        @GetMapping("update")
+        @PostMapping("update")
     public Message  updateByPrimaryKey( Address record) throws Exception {
             Address address = AddressService.selectByPrimaryKey(record.getId());
             if (address!=null) {

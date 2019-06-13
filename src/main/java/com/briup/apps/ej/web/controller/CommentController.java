@@ -6,6 +6,7 @@ import com.briup.apps.ej.bean.extend.CommentExtend;
 import com.briup.apps.ej.service.CommentService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
-
+@Api(description = "评论管理相关的接口")
 @RestController
 @RequestMapping("comment")
 public class CommentController {
@@ -73,7 +74,7 @@ public class CommentController {
     }
 
     @ApiOperation("更新评论信息")
-    @GetMapping("update")
+    @PostMapping("update")
     public Message update(Comment record){
 
         int update=commentService.updateByPrimaryKey(record);

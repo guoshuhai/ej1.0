@@ -6,6 +6,7 @@ import com.briup.apps.ej.service.OrderService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import com.sun.org.apache.xpath.internal.operations.Or;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import javax.validation.constraints.Null;
 import java.util.List;
 
 import com.briup.apps.ej.dao.OrderMapper;
-
+@Api(description = "订单管理相关的接口")
 @Validated
 @RestController
 @RequestMapping("Order")

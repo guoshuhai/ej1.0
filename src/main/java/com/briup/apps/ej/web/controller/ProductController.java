@@ -4,6 +4,7 @@ import com.briup.apps.ej.bean.Product;
 import com.briup.apps.ej.bean.extend.ProductExtend;
 import com.briup.apps.ej.service.ProductService;
 import com.briup.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import com.briup.apps.ej.dao.extend.ProductExtendMapper;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-
+@Api(description = "产品管理相关的接口")
 @RestController
 @RequestMapping("/product")
 @Validated
@@ -51,7 +52,7 @@ public class ProductController {
         return MessageUtil.success("success",user);
     }
     @ApiOperation("保存或更新用户信息")
-    @GetMapping("saveOrUpdate")
+    @PostMapping("saveOrUpdate")
     public Message saveOrUpdate(@Valid @ModelAttribute  Product product){
         try {
             productService.saveOrUpdate(product);

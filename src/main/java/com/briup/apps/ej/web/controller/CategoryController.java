@@ -45,7 +45,7 @@ public class CategoryController {
 
 
     @ApiOperation("通过id更新分类")
-    @GetMapping("update")
+    @PostMapping("update")
     public Message updateByPrimaryKey( Category record) throws  Exception{
         Category category = categoryService.selectByPrimaryKey(record.getId());
         if (category!=null) {
