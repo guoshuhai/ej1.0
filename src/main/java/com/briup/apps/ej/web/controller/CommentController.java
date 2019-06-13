@@ -65,7 +65,7 @@ public class CommentController {
         }
     }
     @ApiOperation("添加评论信息")
-    @GetMapping("insert")
+    @PostMapping("insert")
     public Message insert(Comment record){
 
         int insert=commentService.insert(record);

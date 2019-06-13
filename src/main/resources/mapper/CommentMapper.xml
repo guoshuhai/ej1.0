@@ -285,6 +285,7 @@
 
     </select>
   <select id="findAllcomment" resultMap="BaseResultMap">
-        select *from ej_comment
+        select * from ej_comment
+
   </select>
 </mapper>

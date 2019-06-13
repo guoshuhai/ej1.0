@@ -7,11 +7,10 @@ import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import jdk.nashorn.internal.objects.annotations.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.briup.apps.ej.service.impl.CustomerServiceImpl;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class CustomerController {
 
     @ApiOperation("查询所有顾客信息")
     @GetMapping("findAllCustomer")
-    public Message findAllCustomer(){
+    public Message findAllCustomer() throws Exception {
         List<Customer> list = customerService.findAllcustomer();
         return MessageUtil.success("success",list);
     }
@@ -43,9 +42,9 @@ public class CustomerController {
     }
 
 
-    @ApiOperation("query")
+    @ApiOperation("模糊查询")
     @GetMapping("query")
-    public Message query(Customer customer){
+    public Message query(Customer customer) throws Exception {
         List<Customer> list=customerService.query(customer);
         return MessageUtil.success("success",list);
     }
@@ -64,11 +63,19 @@ public class CustomerController {
     }
     @ApiOperation("添加顾客信息")
     @PostMapping("insert")
-    public Message insert(Customer record) throws Exception{
+    public Message insert(
+            @Valid
+            @ModelAttribute
+            @ApiParam (required = true)Customer record) throws Exception{
 
         int insert=customerService.insert(record);
         return MessageUtil.success("success",insert);
     }
+
+
+
+
+
 
     @ApiOperation("更新顾客信息")
     @GetMapping("update")

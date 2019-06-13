@@ -27,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public int deleteByPrimaryKey(Long id) {
+    public int deleteByPrimaryKey(Long id) throws Exception {
         return customerMapper.deleteByPrimaryKey(id);
     }
 
@@ -63,24 +63,24 @@ public class CustomerServiceImpl implements CustomerService {
 
     //查询所有顾客信息
     @Override
-    public List<Customer> findAllcustomer() {
+    public List<Customer> findAllcustomer() throws Exception {
         return customerMapper.findAllcustomer();
     }
 
     //模糊查询顾客信息
     @Override
-    public List<Customer> query(Customer customer) {
+    public List<Customer> query(Customer customer) throws Exception {
         return customerMapper.query(customer);
     }
 
     @Override
-    public int updateByPrimaryKeySelective(Customer record) {
+    public int updateByPrimaryKeySelective(Customer record) throws Exception {
         return customerMapper.updateByPrimaryKey(record);
     }
     //更新顾客信息数据
 
     @Override
-    public int updateByPrimaryKey(Customer record) {
+    public int updateByPrimaryKey(Customer record) throws Exception {
         return customerMapper.updateByPrimaryKey(record);
     }
 

@@ -29,13 +29,13 @@ public interface CustomerService {
 
     int updateByExample(@Param("record") Customer record, @Param("example") CustomerExample example);
 
-    int updateByPrimaryKeySelective(Customer record);
+    int updateByPrimaryKeySelective(Customer record) throws Exception;
 
-    int updateByPrimaryKey(Customer record);
+    int updateByPrimaryKey(Customer record)throws  Exception;
 
-    List <Customer> query(Customer customer);
+    List <Customer> query(Customer customer) throws Exception;
 
-    List<Customer> findAllcustomer();
+    List<Customer> findAllcustomer()throws  Exception;
 
      void batchDelete(long[] ids) throws  Exception;
 

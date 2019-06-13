@@ -1,6 +1,6 @@
 package com.briup.apps.ej.bean;
 
-import org.hibernate.validator.constraints.Length;
+import io.swagger.annotations.ApiParam;
 
 import javax.validation.constraints.NotBlank;
 
@@ -21,6 +21,8 @@ public class Customer {
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
+    @ApiParam("手机号")
+    @NotBlank(message = "手机号不能为空")
     private String telephone;
 
     /**
@@ -32,6 +34,8 @@ public class Customer {
      */
 //    @NotBlank(message = "密码不能为空")
 //    @Length(min = 5, max = 17, message = "密码长度在[5,17]之间")
+    @ApiParam("密码")
+    @NotBlank(message = "密码不为空")
     private String password;
 
     /**
@@ -42,6 +46,8 @@ public class Customer {
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
 //    @NotBlank(message = "用户名不能为空")
+    @ApiParam("用户名")
+    @NotBlank(message = "用户名不能为空")
     private String realname;
 
     /**
@@ -51,6 +57,8 @@ public class Customer {
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
+    @ApiParam("状态")
+    @NotBlank(message = "状态不能空")
     private String status;
 
     /**
@@ -60,8 +68,11 @@ public class Customer {
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
+    @ApiParam("照片")
+    @NotBlank(message = "照片不能为空")
     private String photo;
-
+    @ApiParam("地址")
+    @NotBlank(message = "地址不能为空")
     public String address;
 
     public String getAddress() {
