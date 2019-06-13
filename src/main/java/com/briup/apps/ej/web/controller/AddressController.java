@@ -81,5 +81,16 @@ public class AddressController {
 
     }
 
+    @ApiOperation("findAllAddress")
+    @GetMapping("findAllAddress")
+    public Message  findAllAddress() throws Exception {
+
+        List<Address> alladdress = AddressService.findAlladdress();
+
+        return MessageUtil.success("success",alladdress);
+
+
+
+    }
 
 }

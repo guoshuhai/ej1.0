@@ -32,7 +32,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public int insert(Customer record) {
+    public int insert(Customer record)throws  Exception {
         return customerMapper.insert(record);
     }
 
@@ -92,7 +92,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void regist(Customer customer) {
+    public void regist(Customer customer) throws Exception {
 
         customerMapper.insert(customer);
     }

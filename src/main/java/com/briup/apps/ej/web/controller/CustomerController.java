@@ -51,7 +51,7 @@ public class CustomerController {
     }
     @ApiOperation("添加顾客信息")
     @PostMapping("insert")
-    public Message insert(Customer record){
+    public Message insert(Customer record) throws Exception{
 
         int insert=customerService.insert(record);
         return MessageUtil.success("success",insert);
@@ -59,7 +59,7 @@ public class CustomerController {
 
     @ApiOperation("更新顾客信息")
     @GetMapping("update")
-    public Message updateByExampleSelective(Customer record){
+    public Message updateByExampleSelective(Customer record) throws Exception{
 
         int updateByExampleSelective=customerService.insert(record);
         return MessageUtil.success("success",updateByExampleSelective);
@@ -90,7 +90,7 @@ public class CustomerController {
 
     @GetMapping("regist")
     @ApiOperation("regist")
-    public Message regist(Customer customer) {
+    public Message regist(Customer customer)  throws  Exception{
         String realname=customer.getRealname();
         Customer byCustromName = customerService.findByCustromName(realname);
         if (byCustromName == null) {
