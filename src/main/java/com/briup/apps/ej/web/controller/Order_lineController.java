@@ -38,7 +38,7 @@ public class Order_lineController {
         }
     }
 
-    @ApiOperation("不输入id进行删除")
+    @ApiOperation("不输入id进行插入")
     @GetMapping("/insert")
     public Message insert(Order_line record){
         try {

@@ -1,5 +1,14 @@
 package com.briup.apps.ej.bean;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiParam;
+import org.hibernate.validator.constraints.Length;
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.constraints.NotEmpty;
+
+
+@ApiModel("顾客模型")
 public class Order {
     /**
      *
@@ -8,6 +17,9 @@ public class Order {
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
+
+    @ApiParam("id号码")
+    @NotEmpty(message = "id不能为空")
     private Long id;
 
     /**
@@ -17,6 +29,7 @@ public class Order {
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
+    @Length(min = 10,message = "长度必须长于10")
     private Long orderTime;
 
     /**

@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiParam;
 import jdk.nashorn.internal.objects.annotations.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.briup.apps.ej.service.impl.CustomerServiceImpl;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -36,6 +37,8 @@ public class CustomerController {
             @ApiParam(value = "主键",required = true)
             @RequestParam(value = "id")long id){
         Customer customer=customerService.selectByPrimaryKey(id);
+//        CustomerServiceImpl customerService=new CustomerServiceImpl();//测试数据根据CustomerServiceImpl还是customerService流动：答案是后者
+//        Customer customer=customerService.selectByPrimaryKey(id);
         return MessageUtil.success("success",customer);
     }
     @ApiOperation("通过id删除信息")

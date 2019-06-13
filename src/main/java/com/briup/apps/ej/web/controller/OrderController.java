@@ -9,17 +9,25 @@ import com.sun.org.apache.xpath.internal.operations.Or;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.util.List;
 
+import com.briup.apps.ej.dao.OrderMapper;
+
+@Validated
 @RestController
 @RequestMapping("Order")
 public class OrderController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private OrderMapper orderMapper;
 
     /**@GetMapping("/selectByPrimaryKey")
     public Message selectByPrimaryKey(@ApiParam(value = "主键",required = true) @RequestParam(value = "id")long id){
@@ -29,7 +37,7 @@ public class OrderController {
 
     @ApiOperation("输入id进行删除")
     @GetMapping("/deleteByPrimaryKey")
-    public Message deleteByPrimaryKey(@ApiParam(value = "主键",required = true) @RequestParam(value = "id")long id ){
+    public Message deleteByPrimaryKey(@ApiParam(value = "主键",required = true) @RequestParam(value = "id") long id ){
         try {
             orderService.deleteByPrimaryKey(id);
             return MessageUtil.success("删除成功!");
@@ -67,8 +75,13 @@ public class OrderController {
     @ApiOperation("输入id进行查询")
     @GetMapping("/findAllOrderById")
     public Message findAllOrderById(@ApiParam(value = "主键",required = true) @RequestParam(value = "id")long id ){
+        System.out.println(id);
+        //orderExtend orderExtend=orderService.findAllOrderById(id);//这句本质上等同orderExtend orderExtend=orderMapper.findAllOrderById(id)，也就是orderService.findAllOrderById(id)=>orderMapper.findAllOrderById(id)，但是数据流会出错
+        //orderExtend  orderExtend=orderMapper.findAllOrderById(id);
+        //System.out.println(orderExtend.getOrderTime());
         orderExtend orderExtend=orderService.findAllOrderById(id);
-        return MessageUtil.success("success",orderExtend);
+        //System.out.println(orderExtend.getOrderTime());//干扰值,因为id不存在的时候，orderExtend对象是空的，所以再查这个对象属性的时候就会抛空异常
+        return MessageUtil.success("success",orderExtend);//针对干扰值，id不存在时候的对象放在Message中，实现返回null
     }
 
     @ApiOperation("查询所有")
@@ -92,6 +105,7 @@ public class OrderController {
      orderService.betchDelete(ids);
      return MessageUtil.success("批量删除成功");
     }
+
 
 }
 
