@@ -94,7 +94,7 @@ WaiterController {
 
 
     @ApiOperation("保存或更新")
-    @GetMapping("saveorupdate")
+    @PostMapping("saveorupdate")
     public Message  saveorupdate(Waiter waiter) throws Exception {
 
         Waiter waiter1 = waiterService.findById(waiter.getId());

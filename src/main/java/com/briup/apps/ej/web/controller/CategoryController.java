@@ -133,7 +133,7 @@ public class CategoryController {
 
 
     @ApiOperation("保存或更新")
-    @GetMapping("saveorupdate")
+    @PostMapping("saveorupdate")
     public Message  saveorupdate(Category category) throws Exception {
 
         Category category1 = categoryService.selectByPrimaryKey(category.getId());
