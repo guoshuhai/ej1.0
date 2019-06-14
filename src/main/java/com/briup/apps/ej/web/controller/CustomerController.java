@@ -34,9 +34,9 @@ public class CustomerController {
 
     @ApiOperation("通过主键查询")
     @GetMapping("selectById")
-    public Message selectById(
+    public Message selectById (
             @ApiParam(value = "主键",required = true)
-            @RequestParam(value = "id")long id){
+            @RequestParam(value = "id")long id)throws Exception{
         Customer customer=customerService.selectByPrimaryKey(id);
 //        CustomerServiceImpl customerService=new CustomerServiceImpl();//测试数据根据CustomerServiceImpl还是customerService流动：答案是后者
 //        Customer customer=customerService.selectByPrimaryKey(id);
@@ -51,18 +51,6 @@ public class CustomerController {
         return MessageUtil.success("success",list);
     }
 
-
-    @ApiOperation("通过id删除信息")
-    @GetMapping("deleteById")
-    public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") Long id){
-        try {
-            customerService.deleteByPrimaryKey(id);
-            return MessageUtil.success("删除成功!");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
-        }
-    }
     @ApiOperation("添加顾客信息")
     @PostMapping("insert")
     public Message insert(
@@ -74,17 +62,36 @@ public class CustomerController {
         return MessageUtil.success("success",insert);
     }
 
+//    @ApiOperation("更新顾客信息")
+//    @PostMapping("update")
+//    public Message updateByPrimaryKey(Customer record) throws Exception{
+//
+//        int update=customerService.updateByPrimaryKey(record);
+//        return MessageUtil.success("success",update);
+//    }
 
+    @ApiOperation("保存或更新顾客信息")
+    @PostMapping("saveOrUpdate")
+    public Message saveOrUpdate( @ModelAttribute  Customer customer){
+        try {
+            customerService.saveOrUpdate(customer);
+            return MessageUtil.success("保存成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return MessageUtil.error(e.getMessage());
+        }
+    }
 
-
-
-
-    @ApiOperation("更新顾客信息")
-    @PostMapping("update")
-    public Message updateByExampleSelective(Customer record) throws Exception{
-
-        int updateByExampleSelective=customerService.insert(record);
-        return MessageUtil.success("success",updateByExampleSelective);
+    @ApiOperation("通过id删除信息")
+    @GetMapping("deleteById")
+    public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") Long id)throws Exception {
+        try {
+            customerService.deleteByPrimaryKey(id);
+            return MessageUtil.success("删除成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return MessageUtil.error(e.getMessage());
+        }
     }
 
     @PostMapping("batchDelete")
@@ -95,7 +102,7 @@ public class CustomerController {
     }
 
     @GetMapping("login")
-    @ApiOperation("login")
+    @ApiOperation("登录")
     public Message login(String realname,String password) throws Exception{
         Customer userByNameAndPwd = customerService.findUserByNameAndPwd(realname, password);
 
@@ -111,7 +118,7 @@ public class CustomerController {
 
 
     @GetMapping("regist")
-    @ApiOperation("regist")
+    @ApiOperation("注册")
     public Message regist(Customer customer)  throws  Exception{
         String realname=customer.getRealname();
         Customer byCustromName = customerService.findByCustromName(realname);

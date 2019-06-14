@@ -15,35 +15,37 @@ public interface CustomerService {
 
     int deleteByExample(CustomerExample example);
 
-    int deleteByPrimaryKey(Long id) throws Exception;
-
-    int insert(Customer record) throws  Exception;
-
     int insertSelective(Customer record);
 
     List<Customer> selectByExample(CustomerExample example);
-
-    Customer selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") Customer record, @Param("example") CustomerExample example);
 
     int updateByExample(@Param("record") Customer record, @Param("example") CustomerExample example);
 
-    int updateByPrimaryKeySelective(Customer record) throws Exception;
+    int updateByPrimaryKeySelective(Customer record) ;
 
-    int updateByPrimaryKey(Customer record)throws  Exception;
+
+    //以下是能够用到的
+    List<Customer> findAllcustomer() throws Exception;
 
     List <Customer> query(Customer customer) throws Exception;
 
-    List<Customer> findAllcustomer()throws  Exception;
+    Customer selectByPrimaryKey(Long id) throws Exception;
 
-     void batchDelete(long[] ids) throws  Exception;
+    int insert(Customer record) throws Exception;
 
+    //int updateByPrimaryKey(Customer record)throws  Exception;
 
-     void regist(Customer customer ) throws Exception;
+    void saveOrUpdate(Customer customer) throws Exception;
+
+    void batchDelete(long[] ids) throws  Exception;
+
+    int deleteByPrimaryKey(Long id) throws Exception;
+
+    void regist(Customer customer ) throws Exception;
 
     Customer findUserByNameAndPwd(String realname,String password);
-
     Customer findByCustromName(String realname);
 
 

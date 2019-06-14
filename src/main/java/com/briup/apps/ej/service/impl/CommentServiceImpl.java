@@ -25,9 +25,8 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public int deleteByExample(CommentExample example) {
-        return 0;
-    }
+    public int deleteByExample(CommentExample example) { return 0; }
+
 
     public int deleteByPrimaryKey(Long id) throws Exception {
         Comment comment=commentMapper.selectByPrimaryKey(id);
@@ -43,60 +42,60 @@ public class CommentServiceImpl implements CommentService {
 
 
     @Override
-    public int insert(Comment record) {
+    public int insert(Comment record) throws Exception{
         return commentMapper.insert(record);
     }
 
     @Override
-    public int insertSelective(Comment record) {
-        return 0;
-    }
+    public int insertSelective(Comment record) { return 0; }
 
     @Override
-    public List<Comment> selectByExample(CommentExample example) {
-        return null;
-    }
+    public List<Comment> selectByExample(CommentExample example) { return null; }
 
     @Override
-    public Comment selectByPrimaryKey(Long id) {
+    public Comment selectByPrimaryKey(Long id) throws Exception{
         return commentMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public int updateByExampleSelective(Comment record, CommentExample example) {
-        return 0;
-    }
+    public int updateByExampleSelective(Comment record, CommentExample example) { return 0; }
 
     @Override
-    public int updateByExample(Comment record, CommentExample example) {
-        return 0;
-    }
+    public int updateByExample(Comment record, CommentExample example) { return 0; }
 
     @Override
-    public int updateByPrimaryKeySelective(Comment record) {
-        return 0;
-    }
+    public int updateByPrimaryKeySelective(Comment record) { return 0; }
 
 
     @Override
-    public int updateByPrimaryKey(Comment record){
+    public int updateByPrimaryKey(Comment record)throws Exception{
+
         return commentMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public void saveOrUpdate(Comment comment) throws Exception {
+        if (comment.getId() == null) {
+            commentMapper.insert(comment);
+        } else {
+            commentMapper.updateByPrimaryKey(comment);
+        }
     }
 
     //模糊查询
     @Override
-    public List<Comment> query(Comment comment) {
+    public List<Comment> query(Comment comment)throws Exception {
         return commentMapper.query(comment);
     }
 
     @Override
-    public List<CommentExtend> selectAll(Long id) {
+    public List<CommentExtend> selectAll(Long id)throws Exception {
 
         return commentExtendMapper.selectAll(id);
     }
 
     @Override
-    public List<Comment> findAllcomment() {
+    public List<Comment> findAllcomment()throws Exception {
         return commentMapper.findAllcomment();
     }
 }
