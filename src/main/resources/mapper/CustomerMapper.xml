@@ -147,10 +147,10 @@
       This element was generated on Mon Jun 10 13:33:10 CST 2019.
     -->
     insert into ej_customer (id, telephone, password, 
-      realname, status, photo
+      realname, status, photo,address
       )
     values (#{id,jdbcType=BIGINT}, #{telephone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{realname,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}
+      #{realname,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR},#{address,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.briup.apps.ej.bean.Customer">

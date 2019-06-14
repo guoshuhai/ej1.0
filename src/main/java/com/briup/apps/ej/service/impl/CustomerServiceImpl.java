@@ -17,24 +17,10 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerMapper customerMapper;
 
     @Override
-    public long countByExample(CustomerExample example) {
-        return 0;
-    }
+    public long countByExample(CustomerExample example) { return 0; }
 
     @Override
-    public int deleteByExample(CustomerExample example) {
-        return 0;
-    }
-
-    @Override
-    public int deleteByPrimaryKey(Long id) throws Exception {
-        return customerMapper.deleteByPrimaryKey(id);
-    }
-
-    @Override
-    public int insert(Customer record)throws  Exception {
-        return customerMapper.insert(record);
-    }
+    public int deleteByExample(CustomerExample example) { return 0; }
 
     @Override
     public int insertSelective(Customer record) {
@@ -47,14 +33,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer selectByPrimaryKey(Long id) {
-        return customerMapper.selectByPrimaryKey(id);
-    }
-
-    @Override
     public int updateByExampleSelective(Customer record, CustomerExample example) {
         return 0;
     }
+
+    @Override
+    public int updateByPrimaryKeySelective(Customer record)  { return 0; }
 
     @Override
     public int updateByExample(Customer record, CustomerExample example) {
@@ -66,6 +50,11 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Customer> findAllcustomer() throws Exception {
         return customerMapper.findAllcustomer();
     }
+    //根据id查询顾客信息
+    @Override
+    public Customer selectByPrimaryKey(Long id) throws Exception {
+        return customerMapper.selectByPrimaryKey(id);
+    }
 
     //模糊查询顾客信息
     @Override
@@ -73,17 +62,35 @@ public class CustomerServiceImpl implements CustomerService {
         return customerMapper.query(customer);
     }
 
+    //添加信息
     @Override
-    public int updateByPrimaryKeySelective(Customer record) throws Exception {
-        return customerMapper.updateByPrimaryKey(record);
-    }
-    //更新顾客信息数据
-
-    @Override
-    public int updateByPrimaryKey(Customer record) throws Exception {
-        return customerMapper.updateByPrimaryKey(record);
+    public int insert(Customer record)throws Exception {
+        return customerMapper.insert(record);
     }
 
+    //根据id更新顾客信息数据
+//
+//    @Override
+//    public int updateByPrimaryKey(Customer record) throws Exception {
+//        return customerMapper.updateByPrimaryKey(record);
+//    }
+
+
+    @Override
+    public void saveOrUpdate(Customer customer) throws Exception {
+        if (customer.getId() == null) {
+            customerMapper.insert(customer);
+        } else {
+            customerMapper.updateByPrimaryKey(customer);
+        }
+    }
+    //根据id删除
+
+    @Override
+    public int deleteByPrimaryKey(Long id) throws Exception {
+        return customerMapper.deleteByPrimaryKey(id);
+    }
+    //批量删除
     public void batchDelete(long[] ids) throws Exception {
 
         for (long id : ids) {
@@ -102,7 +109,9 @@ public class CustomerServiceImpl implements CustomerService {
             return customerMapper.findUserByNameAndPwd(realname,password);
         }
 
-        @Override
+
+
+    @Override
         public Customer findByCustromName(String realname) {
 
             return customerMapper.findByCustromName(realname);

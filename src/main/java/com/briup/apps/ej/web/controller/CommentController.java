@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 @Api(description = "评论管理相关的接口")
@@ -26,13 +27,13 @@ public class CommentController {
 
     @ApiOperation("模糊查询")
     @GetMapping("query")
-    public Message query(Comment comment){
+    public Message query(Comment comment) throws Exception {
         List<Comment> list = commentService.query(comment);
         return MessageUtil.success("success",list);
     }
     @ApiOperation("查询所有评论信息")
     @GetMapping("findAllcomment")
-    public Message findAllcomment(){
+    public Message findAllcomment() throws Exception {
         List<Comment> list = commentService.findAllcomment();
         return MessageUtil.success("success",list);
     }
@@ -40,7 +41,7 @@ public class CommentController {
 
     @ApiOperation("通过ID查询携带订单信息的评论")
     @GetMapping("selectAllById")
-    public Message selectAll(Long id) {
+    public Message selectAll(Long id) throws Exception {
         List<CommentExtend> list=commentService.selectAll(id);
         return MessageUtil.success("sucess",list);
 
@@ -50,13 +51,15 @@ public class CommentController {
     @GetMapping("selectById")
     public Message selectById(
             @ApiParam(value = "主键",required = true)
-            @RequestParam(value = "id")long id){
+            @RequestParam(value = "id")long id) throws Exception {
         Comment comment=commentService.selectByPrimaryKey(id);
         return MessageUtil.success("success",comment);
     }
     @ApiOperation("通过id删除信息")
     @GetMapping("deleteById")
-    public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") Long id){
+    public Message deleteById(
+            @ApiParam(value = "主键",required = true)
+            @RequestParam("id") Long id){
         try {
             commentService.deleteByPrimaryKey(id);
             return MessageUtil.success("删除成功!");
@@ -67,21 +70,30 @@ public class CommentController {
     }
     @ApiOperation("添加评论信息")
     @PostMapping("insert")
-    public Message insert(Comment record){
+    public Message insert(Comment record) throws Exception {
 
         int insert=commentService.insert(record);
         return MessageUtil.success("success",insert);
     }
 
-    @ApiOperation("更新评论信息")
-    @PostMapping("update")
-    public Message update(Comment record){
+//    @ApiOperation("更新评论信息")
+//    @PostMapping("update")
+//    public Message update(Comment record) throws Exception {
+//
+//        int update=commentService.updateByPrimaryKey(record);
+//        return MessageUtil.success("success",update);
+//    }
 
-        int update=commentService.updateByPrimaryKey(record);
-        return MessageUtil.success("success",update);
+    @ApiOperation("保存或更新评论信息")
+    @PostMapping("saveOrUpdate")
+    public Message saveOrUpdate(@Valid @ModelAttribute  Comment comment){
+        try {
+            commentService.saveOrUpdate(comment);
+            return MessageUtil.success("保存成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return MessageUtil.error(e.getMessage());
+        }
     }
-
-
-
 
 }

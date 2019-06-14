@@ -11,37 +11,29 @@ public interface CustomerMapper {
 
     int deleteByExample(CustomerExample example);
 
-
-    int deleteByPrimaryKey(Long id)throws  Exception;
-
-
-    int insert(Customer record) throws  Exception;
-
-
     int insertSelective(Customer record);
-
 
     List<Customer> selectByExample(CustomerExample example);
 
-
-    Customer selectByPrimaryKey(Long id);
+    int updateByPrimaryKeySelective(Customer record);
 
     int updateByExampleSelective(@Param("record") Customer record, @Param("example") CustomerExample example);
 
-
     int updateByExample(@Param("record") Customer record, @Param("example") CustomerExample example);
 
+    //以下是能用到的
+    Customer selectByPrimaryKey(Long id)throws Exception;
 
-    int updateByPrimaryKeySelective(Customer record);
+    int deleteByPrimaryKey(Long id)throws Exception;
 
+    int insert(Customer record) throws Exception;
 
-    int updateByPrimaryKey(Customer record)throws  Exception;
+    int updateByPrimaryKey(Customer record)throws Exception;
     //模糊查询
-    List<Customer> query(Customer customer)throws  Exception;
+    List<Customer> query(Customer customer)throws Exception;
 
     //查询所有
-    List<Customer> findAllcustomer()throws  Exception;
-
+    List<Customer> findAllcustomer()throws Exception;
 
     Customer findUserByNameAndPwd(@Param("realname")String username,@Param("password")String password);
 
