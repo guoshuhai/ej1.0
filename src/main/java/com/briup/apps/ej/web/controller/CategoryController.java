@@ -1,5 +1,6 @@
 package com.briup.apps.ej.web.controller;
 
+import com.briup.apps.ej.bean.Address;
 import com.briup.apps.ej.bean.Category;
 import com.briup.apps.ej.bean.extend.CategoryExtend;
 import com.briup.apps.ej.dao.CategoryMapper;
@@ -129,7 +130,28 @@ public class CategoryController {
             List<Category> list=categoryService.query(category);
         return MessageUtil.success("success",list);
     }
-}
+
+
+    @ApiOperation("保存或更新")
+    @GetMapping("saveorupdate")
+    public Message  saveorupdate(Category category) throws Exception {
+
+        Category category1 = categoryService.selectByPrimaryKey(category.getId());
+
+        if (category == null) {
+            categoryService.insert(category);
+            return MessageUtil.success("插入成功");
+
+
+        } else {
+
+            categoryService.updateByPrimaryKey(category);
+            return MessageUtil.success("修改成功");
+        }
+
+
+    }
+    }
 
 
 

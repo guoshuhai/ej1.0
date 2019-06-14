@@ -97,4 +97,24 @@ public class AddressController {
 
     }
 
+    @ApiOperation("保存或更新")
+    @GetMapping("saveorupdate")
+    public Message  saveorupdate(Address address) throws Exception {
+
+        Address address1 = AddressService.selectByPrimaryKey(address.getId());
+
+        if (address1==null){
+                AddressService.insert(address);
+                return MessageUtil.success("插入成功");
+
+
+        }else {
+
+            AddressService.updateByPrimaryKey(address);
+            return MessageUtil.success("修改成功");
+        }
+
+
+
+    }
 }
