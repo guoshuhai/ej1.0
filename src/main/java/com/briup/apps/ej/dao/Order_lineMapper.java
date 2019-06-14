@@ -98,7 +98,7 @@ public interface Order_lineMapper {
 
 
         //查询订单项通过id
-       Order_line_Extend findAllOrder_lineById(Long id);
+       Order_line_Extend findAllOrder_lineById(Long id) throws Exception;
 
        //查询所有的订单项
        List<Order_line_Extend> findAllOrder_line();

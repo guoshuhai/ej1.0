@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
-@Api(description = "订单项管理相关的接口")
+
+@Api(description = "订单项管理系统")
 @RestController
 @RequestMapping("Order_line")
 public class Order_lineController {
@@ -68,7 +69,7 @@ public class Order_lineController {
     @GetMapping("findAllOrder_lineById")
     public Message findAllOrder_lineById(@ApiParam(value = "主键",required = true) @RequestParam(value = "id") Long id) throws Exception{
         Order_line_Extend order_line_extend=orderLineService.findAllOrder_lineById(id);
-        if (order_line_extend.getId()!=null){
+        if (MessageUtil.success("",order_line_extend).getData()!=null){
             return MessageUtil.success("success",order_line_extend);
 
         }else

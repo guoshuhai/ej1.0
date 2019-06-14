@@ -2,6 +2,8 @@ package com.briup.apps.ej.service;
 
 import com.briup.apps.ej.bean.Order;
 import com.briup.apps.ej.bean.OrderExample;
+import com.briup.apps.ej.bean.VM.OrderAndOrderLineVM;
+import com.briup.apps.ej.bean.VM.OrderVM;
 import com.briup.apps.ej.bean.extend.orderExtend;
 import org.apache.ibatis.annotations.Param;
 
@@ -99,13 +101,16 @@ public interface OrderService {
      */
     int updateByPrimaryKey(Order record) throws  Exception;
 
-    orderExtend findAllOrderById(Long id);
+    orderExtend findAllOrderById(Long id) throws Exception;
 
     List<Order>  findAllOrder();
 
-    List<Order> query(Order order);
+    //List<Order> query(Order order);
 
-    void betchDelete(long[] ids) throws Exception;
+    void betchDelete(long[] ids) throws Exception;//批量删除订单
 
+    List<OrderVM> queryBasic(Long customerId, Long waiterId);
+
+    void save(OrderAndOrderLineVM order) throws Exception;
 }
 

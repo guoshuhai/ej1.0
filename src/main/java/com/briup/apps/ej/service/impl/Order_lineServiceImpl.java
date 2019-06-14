@@ -5,6 +5,7 @@ import com.briup.apps.ej.bean.Order_lineExample;
 import com.briup.apps.ej.bean.extend.Order_line_Extend;
 import com.briup.apps.ej.dao.Order_lineMapper;
 import com.briup.apps.ej.service.Order_lineService;
+import com.briup.apps.ej.utils.MessageUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,7 +29,7 @@ public class Order_lineServiceImpl implements Order_lineService {
     @Override
     public int deleteByPrimaryKey(Long id) throws Exception {
         Order_line orderLine=orderLineMapper.findAllOrder_lineById(id);
-        if(orderLine.getId()==null){
+        if(MessageUtil.success("",orderLine).getData()==null){
             throw new Exception("要删除的用户不存在");
         }else {
             return orderLineMapper.deleteByPrimaryKey(id);
@@ -38,10 +39,9 @@ public class Order_lineServiceImpl implements Order_lineService {
     @Override
     public int insert(Order_line record) throws  Exception {
         if(record.getId()==null){
-
             return orderLineMapper.insert(record);
         }else {
-            throw new Exception("订单已存在");
+            throw new Exception("请不要输入ID值");
         }
     }
 
@@ -77,18 +77,27 @@ public class Order_lineServiceImpl implements Order_lineService {
 
     @Override
     public int updateByPrimaryKey(Order_line record) throws Exception{
-        if (record!=null){
-            return orderLineMapper.updateByPrimaryKey(record);
-        }else {
-            throw new Exception("请输入id值");
-        }
+        if (record.getId()!=null){
+            Order_line orderLine=orderLineMapper.findAllOrder_lineById(record.getId());
+            if(MessageUtil.success("",orderLine).getData()!=null){
+                return orderLineMapper.updateByPrimaryKey(record);
+            }else{
+                throw new Exception("用户不存在");
+            }
 
+        }else {
+            throw new Exception("id值不能为空");
+        }
     }
 
     @Override
-    public Order_line_Extend findAllOrder_lineById(Long id)  {
-
-        return orderLineMapper.findAllOrder_lineById(id);
+    public Order_line_Extend findAllOrder_lineById(Long id) throws Exception {
+        Order_line_Extend orderLine=orderLineMapper.findAllOrder_lineById(id);
+        if (MessageUtil.success("",orderLine).getData()!=null){
+            return orderLine;
+        }else {
+            throw new Exception("查找的订单项不存在");
+        }
     }
 
     @Override
