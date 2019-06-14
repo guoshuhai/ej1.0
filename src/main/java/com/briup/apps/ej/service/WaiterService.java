@@ -7,6 +7,7 @@ import java.util.List;
 public interface WaiterService {
 
     List<Waiter> query(Waiter waiter);
+
     List<Waiter> findAll();
 
     Waiter findById(long id);

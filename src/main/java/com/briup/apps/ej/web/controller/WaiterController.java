@@ -52,7 +52,7 @@ WaiterController {
 
     @ApiOperation("保存或更新用户信息")
     @PostMapping("saveOrUpdate")
-    public Message saveOrUpdate(@Valid @ModelAttribute Waiter waiter){
+    public Message saveOrUpdate(@NotNull @Valid @ModelAttribute Waiter waiter){
         try {
             waiterService.saveOrUpdate(waiter);
             return MessageUtil.success("保存成功!");

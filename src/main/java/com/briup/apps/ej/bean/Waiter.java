@@ -80,7 +80,6 @@ public class Waiter {
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
     @ApiParam(value = "照片" )
-    @NotBlank(message = "照片不能为空" )
     private String photo;
 
     /**

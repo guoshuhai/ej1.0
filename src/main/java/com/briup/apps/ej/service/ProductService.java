@@ -22,6 +22,7 @@ public interface ProductService {
 
 //    根据Id删除
     void deleteById(long id) throws Exception ;
+
     void batchDelete(long[] ids) throws  Exception;
 
 //    根据主键删除
