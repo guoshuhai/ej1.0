@@ -53,29 +53,29 @@ public class OrderController {
         }
     }
 
-    @ApiOperation("不输入id进行插入")
-    @PostMapping("/insert")
-    public  Message  insert(Order record){
-        try {
-            orderService.insert(record);
-            return MessageUtil.success("插入成功!");
-        }catch (Exception e) {
-            e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
-        }
-    }
+//    @ApiOperation("不输入id进行插入")
+//    @PostMapping("/insert")
+//    public  Message  insert(Order record){
+//        try {
+//            orderService.insert(record);
+//            return MessageUtil.success("插入成功!");
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//            return MessageUtil.error(e.getMessage());
+//        }
+//    }
 
-    @ApiOperation("输入id进行更新")
-    @PostMapping("/updateByPrimaryKey")
-    public Message updateByPrimaryKey(Order record){
-        try {
-            orderService.updateByPrimaryKey(record);
-            return MessageUtil.success("修改成功!");
-        }catch (Exception e) {
-            e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
-        }
-    }
+//    @ApiOperation("输入id进行更新")
+//    @PostMapping("/updateByPrimaryKey")
+//    public Message updateByPrimaryKey(Order record){
+//        try {
+//            orderService.updateByPrimaryKey(record);
+//            return MessageUtil.success("修改成功!");
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//            return MessageUtil.error(e.getMessage());
+//        }
+//    }
 
 
     @ApiOperation("输入id进行查询")
@@ -132,5 +132,18 @@ public class OrderController {
         orderService.save(order);
         return MessageUtil.success("操作成功");
     }
+
+    @ApiOperation("保存或更新用户信息")
+    @GetMapping("saveOrUpdate")
+    public Message saveOrUpdate(Order order){
+        try {
+            orderService.saveOrUpdate(order);
+            return MessageUtil.success("保存成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return MessageUtil.error(e.getMessage());
+        }
+    }
+
 }
 

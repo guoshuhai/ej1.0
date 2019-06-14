@@ -40,29 +40,29 @@ public class Order_lineController {
         }
     }
 
-    @ApiOperation("不输入id进行插入")
-    @PostMapping("/insert")
-    public Message insert(Order_line record){
-        try {
-            orderLineService.insert(record);
-            return MessageUtil.success("插入成功!");
-        }catch (Exception e) {
-            e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
-        }
-    }
+//    @ApiOperation("不输入id进行插入")
+//    @PostMapping("/insert")
+//    public Message insert(Order_line record){
+//        try {
+//            orderLineService.insert(record);
+//            return MessageUtil.success("插入成功!");
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//            return MessageUtil.error(e.getMessage());
+//        }
+//    }
 
-    @ApiOperation("输入id进行更新")
-    @PostMapping("/updateByPrimaryKey")
-    public Message updateByPrimaryKey(Order_line record){
-        try {
-            orderLineService.updateByPrimaryKey(record);
-            return MessageUtil.success("更新成功!");
-        }catch (Exception e) {
-            e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
-        }
-    }
+//    @ApiOperation("输入id进行更新")
+//    @PostMapping("/updateByPrimaryKey")
+//    public Message updateByPrimaryKey(Order_line record){
+//        try {
+//            orderLineService.updateByPrimaryKey(record);
+//            return MessageUtil.success("更新成功!");
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//            return MessageUtil.error(e.getMessage());
+//        }
+//    }
 
 
     @ApiOperation("输入id进行查询")
@@ -90,6 +90,18 @@ public class Order_lineController {
     public  Message  betchDelete(@NotNull(message = "id不能为空")long[] ids) throws Exception{
         orderLineService.betchDelete(ids);
         return  MessageUtil.success("删除成功");
+    }
+
+    @ApiOperation("保存或更新用户信息")
+    @GetMapping("saveOrUpdate")
+    public Message saveOrUpdate(Order_line orderLine){
+        try {
+            orderLineService.saveOrUpdate(orderLine);
+            return MessageUtil.success("保存成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return MessageUtil.error(e.getMessage());
+        }
     }
 
 }

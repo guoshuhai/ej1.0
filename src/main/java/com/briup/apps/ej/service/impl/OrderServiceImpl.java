@@ -64,15 +64,15 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
-    @Override
-    public int insert(Order record) throws Exception {
-        if(record.getId()==null){
-            return orderMapper.insert(record);
-        }
-        else{
-            throw new Exception("请不要输入id值");
-        }
-    }
+//    @Override
+//    public int insert(Order record) throws Exception {
+//        if(record.getId()==null){
+//            return orderMapper.insert(record);
+//        }
+//        else{
+//            throw new Exception("请不要输入id值");
+//        }
+//    }
 //        long time=new Date().getTime();//获取当前时间
 //        record.setOrderTime(time);//设置当前时间
         //int custom_ids=0, waiter_ids=0, address_ids=0;
@@ -151,21 +151,21 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.updateByPrimaryKeySelective(record);
     }
 
-    @Override
-    public int updateByPrimaryKey(Order record) throws Exception {
-        if (record.getId()!=null){
-            Order order=orderMapper.findAllOrderById(record.getId());
-            if (MessageUtil.success("",order).getData()!=null){
-                return orderMapper.updateByPrimaryKey(record);
-            }else {
-                throw new Exception("用户不存在");
-            }
-        }
-        else {
-            throw new Exception("id值不能为空");
-        }
-
-    }
+//    @Override
+//    public int updateByPrimaryKey(Order record) throws Exception {
+//        if (record.getId()!=null){
+//            Order order=orderMapper.findAllOrderById(record.getId());
+//            if (MessageUtil.success("",order).getData()!=null){
+//                return orderMapper.updateByPrimaryKey(record);
+//            }else {
+//                throw new Exception("用户不存在");
+//            }
+//        }
+//        else {
+//            throw new Exception("id值不能为空");
+//        }
+//
+//    }
 //        int custom_ids=0, waiter_ids=0, address_ids=0;
 //        if(record.getId()!=null){
 //            if (record.getCustomerId()!=null) {
@@ -243,6 +243,21 @@ public class OrderServiceImpl implements OrderService {
             // 维护订单项与订单之间的关系
             ol.setOrderId(o.getId());
             orderLineMapper.insert(ol);
+        }
+    }
+
+    @Override
+    public void saveOrUpdate(Order orders) throws Exception {
+        if(orders.getId() == null){
+            // 初始化属性
+            orderMapper.insert(orders);
+        } else {
+            Order order=orderMapper.findAllOrderById(orders.getId());
+            if (MessageUtil.success("",order).getData()!=null) {
+               orderMapper.updateByPrimaryKey(orders);
+            }else{
+                throw new Exception("用户不存在");
+            }
         }
     }
 }
