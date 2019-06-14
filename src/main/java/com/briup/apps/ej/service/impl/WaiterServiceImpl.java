@@ -3,6 +3,7 @@ package com.briup.apps.ej.service.impl;
 
 
 
+import com.briup.apps.ej.bean.Product;
 import com.briup.apps.ej.bean.Waiter;
 import com.briup.apps.ej.bean.WaiterExample;
 
@@ -44,6 +45,8 @@ public class WaiterServiceImpl implements WaiterService {
         return waiterMapper.selectByPrimaryKey(id);
 
 }
+
+
    @Override
     public void saveOrUpdate(Waiter waiter) throws Exception {
         if (waiter.getId() == null) {

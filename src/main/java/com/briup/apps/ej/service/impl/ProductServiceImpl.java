@@ -77,7 +77,7 @@ public class ProductServiceImpl implements ProductService {
     public void deleteById(long id) throws Exception {
         Product product = productMapper.selectByPrimaryKey(id);
         if (product == null) {
-            throw new Exception("要删除的用户不存在");
+            throw new Exception("要删除的产品不存在");
         } else {
             productMapper.deleteByPrimaryKey(id);
         }

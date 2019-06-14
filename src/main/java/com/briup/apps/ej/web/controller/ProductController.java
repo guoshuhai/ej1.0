@@ -59,7 +59,7 @@ public class ProductController {
             return MessageUtil.success("保存成功!");
         } catch (Exception e) {
             e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
+            return MessageUtil.error("保存失败");
         }
     }
 
@@ -71,7 +71,7 @@ public class ProductController {
             return MessageUtil.success("删除成功!");
         } catch (Exception e) {
             e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
+            return MessageUtil.error("删除失败");
         }
     }
 
@@ -84,7 +84,7 @@ public class ProductController {
             return MessageUtil.success("插入成功");
         }catch (Exception e){
             e.printStackTrace();
-            return  MessageUtil.error(e.getMessage());
+            return  MessageUtil.error("id已存在");
         }
     }
     @ApiOperation("通过主键查询")

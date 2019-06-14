@@ -15,7 +15,7 @@ public class Product {
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
     @ApiParam(value = "id" ,required = true)
-    @NotBlank(message = "id不能为空" )
+    @NotNull(message = "id不能为空" )
     private Long id;
 
     /**
@@ -35,7 +35,8 @@ h     * This field corresponds to the database column ej_product.name
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
-
+    @ApiParam(value = "描述")
+    @NotBlank(message = "描述不能为空" )
     private String description;
 
     /**
@@ -46,7 +47,8 @@ h     * This field corresponds to the database column ej_product.name
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
 
-//    @NotBlank(message = "价格")
+    @ApiParam(value = "价格" )
+    @NotNull(message = "价格不能为空" )
     private Double price;
 
     /**
@@ -56,6 +58,8 @@ h     * This field corresponds to the database column ej_product.name
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
+    @ApiParam(value = "状态" )
+    @NotBlank(message = "状态不能为空" )
     private String status;
 
     /**
@@ -65,6 +69,8 @@ h     * This field corresponds to the database column ej_product.name
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
+    @ApiParam(value = "照片" )
+    @NotBlank(message = "照片不能为空" )
     private String photo;
 
     /**
@@ -74,6 +80,8 @@ h     * This field corresponds to the database column ej_product.name
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
+    @ApiParam(value = "种类编号" )
+    @NotBlank(message = "种类编号不能为空" )
     private Long categoryId;
 
     /**
