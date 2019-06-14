@@ -24,7 +24,7 @@ public class Waiter {
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
-    @ApiParam(value = "电话" ,required = true)
+    @ApiParam(value = "电话" )
     @NotBlank(message = "电话不能为空" )
     private String telephone;
 

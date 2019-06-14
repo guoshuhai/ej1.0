@@ -9,6 +9,7 @@ import com.briup.apps.ej.bean.WaiterExample;
 
 import com.briup.apps.ej.dao.WaiterMapper;
 import com.briup.apps.ej.service.WaiterService;
+import com.briup.apps.ej.utils.MessageUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -48,24 +49,27 @@ public class WaiterServiceImpl implements WaiterService {
 
 
    @Override
-    public void saveOrUpdate(Waiter waiter) throws Exception {
-        if (waiter.getId() == null) {
+    public void Update(Waiter waiter) throws Exception {
+        if (waiter.getId()!= null) {
+            Waiter waiter1=waiterMapper.selectByPrimaryKey(waiter.getId());
             // 初始化属性
-            waiter.setStatus("正常");
-            waiterMapper.insert(waiter);
+            if(MessageUtil.success("",waiter1).getData()!=null){
+                waiter.setStatus("正常");
+                waiterMapper.updateByPrimaryKey(waiter);
+            }else {
+                throw new Exception("要更新的用户不存在");
+            }
         } else {
-            waiterMapper.updateByPrimaryKey(waiter);
+            throw new Exception("id值不能为空");
         }
     }
 
     @Override
     public void insert(Waiter waiter) throws Exception {
         if (waiter.getId() == null) {
-            // 初始化属性
-            waiter.setStatus("正常");
             waiterMapper.insert(waiter);
         } else {
-            waiterMapper.insert(waiter);
+            throw new Exception("id值必须为空");
         }
     }
 

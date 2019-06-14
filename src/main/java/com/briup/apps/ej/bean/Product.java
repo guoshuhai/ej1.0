@@ -70,7 +70,7 @@ h     * This field corresponds to the database column ej_product.name
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
     @ApiParam(value = "照片" )
-    @NotBlank(message = "照片不能为空" )
+
     private String photo;
 
     /**
@@ -81,7 +81,7 @@ h     * This field corresponds to the database column ej_product.name
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
     @ApiParam(value = "种类编号" )
-    @NotBlank(message = "种类编号不能为空" )
+
     private Long categoryId;
 
     /**

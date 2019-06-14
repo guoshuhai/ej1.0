@@ -52,14 +52,14 @@ public class ProductController {
         return MessageUtil.success("success",user);
     }
     @ApiOperation("保存或更新用户信息")
-    @PostMapping("saveOrUpdate")
-    public Message saveOrUpdate(@Valid @ModelAttribute  Product product){
+    @PostMapping("Update")
+    public Message Update(@Valid @ModelAttribute  Product product){
         try {
-            productService.saveOrUpdate(product);
+            productService.Update(product);
             return MessageUtil.success("保存成功!");
         } catch (Exception e) {
             e.printStackTrace();
-            return MessageUtil.error("保存失败");
+            return MessageUtil.error(e.getMessage());
         }
     }
 
@@ -78,7 +78,7 @@ public class ProductController {
 
     @ApiOperation("插入数据")
     @PostMapping("insert")
-    public Message insert(Product product){
+    public Message insert(@Valid @ModelAttribute Product product){
         try {
             productService.insert(product);
             return MessageUtil.success("插入成功");

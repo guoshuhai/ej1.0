@@ -14,7 +14,7 @@ public interface ProductService {
     Product findById(long id);
 
 
-    void saveOrUpdate(Product product) throws Exception ;
+    void Update(Product product) throws Exception ;
 //    插入数据
     void insert(Product product) throws  Exception;
 

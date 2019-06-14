@@ -12,7 +12,7 @@ public interface WaiterService {
 
     Waiter findById(long id);
 
-    void saveOrUpdate(Waiter waiter) throws Exception ;
+    void Update(Waiter waiter) throws Exception ;
 
     void insert(Waiter waiter) throws  Exception;
 

@@ -52,24 +52,27 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public void saveOrUpdate(Product product) throws Exception {
-        if (product.getId() == null) {
+    public void Update(Product product) throws Exception {
+        if (product.getId()!= null) {
+            Product product1=productMapper.selectByPrimaryKey(product.getId());
             // 初始化属性
-            product.setStatus("正常");
-            productMapper.insert(product);
+            if(MessageUtil.success("",product1).getData()!=null){
+                product.setStatus("正常");
+                productMapper.updateByPrimaryKey(product);
+            }else {
+                throw new Exception("要更新的用户不存在");
+            }
         } else {
-            productMapper.updateByPrimaryKey(product);
+            throw new Exception("id值不能为空");
         }
     }
 
     @Override
     public void insert(Product product) throws Exception {
         if (product.getId() == null) {
-            // 初始化属性
-            product.setStatus("正常");
             productMapper.insert(product);
         } else {
-            productMapper.insert(product);
+            throw new Exception("id值必须为空");
         }
     }
 

@@ -51,14 +51,14 @@ WaiterController {
     }
 
     @ApiOperation("保存或更新用户信息")
-    @PostMapping("saveOrUpdate")
-    public Message saveOrUpdate(@NotNull @Valid @ModelAttribute Waiter waiter){
+    @PostMapping("Update")
+    public Message Update(@NotNull @Valid @ModelAttribute Waiter waiter){
         try {
-            waiterService.saveOrUpdate(waiter);
+            waiterService.Update(waiter);
             return MessageUtil.success("保存成功!");
         } catch (Exception e) {
             e.printStackTrace();
-            return MessageUtil.error("保存失败");
+            return MessageUtil.error(e.getMessage());
         }
     }
 
@@ -76,7 +76,7 @@ WaiterController {
 
     @ApiOperation("插入数据")
     @PostMapping("insert")
-    public Message insert(Waiter waiter){
+    public Message insert(@Valid @ModelAttribute Waiter waiter){
         try {
             waiterService.insert(waiter);
             return MessageUtil.success("插入成功");
