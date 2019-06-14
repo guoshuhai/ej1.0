@@ -50,27 +50,16 @@ public class WaiterServiceImpl implements WaiterService {
 
    @Override
     public void Update(Waiter waiter) throws Exception {
-        if (waiter.getId()!= null) {
-            Waiter waiter1=waiterMapper.selectByPrimaryKey(waiter.getId());
-            // 初始化属性
-            if(MessageUtil.success("",waiter1).getData()!=null){
-                waiter.setStatus("正常");
+
                 waiterMapper.updateByPrimaryKey(waiter);
-            }else {
-                throw new Exception("要更新的用户不存在");
-            }
-        } else {
-            throw new Exception("id值不能为空");
-        }
+
     }
 
     @Override
     public void insert(Waiter waiter) throws Exception {
-        if (waiter.getId() == null) {
+
             waiterMapper.insert(waiter);
-        } else {
-            throw new Exception("id值必须为空");
-        }
+
     }
 
     @Override

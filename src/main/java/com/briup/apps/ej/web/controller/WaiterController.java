@@ -91,5 +91,27 @@ WaiterController {
         waiterService.batchDelete(ids);
         return MessageUtil.success("批量删除成功");
     }
+
+
+    @ApiOperation("保存或更新")
+    @GetMapping("saveorupdate")
+    public Message  saveorupdate(Waiter waiter) throws Exception {
+
+        Waiter waiter1 = waiterService.findById(waiter.getId());
+
+        if (waiter1==null){
+            waiterService.insert(waiter);
+            return MessageUtil.success("插入成功");
+
+
+        }else {
+
+            waiterService.Update(waiter);
+            return MessageUtil.success("修改成功");
+        }
+
+
+
+    }
     }
 

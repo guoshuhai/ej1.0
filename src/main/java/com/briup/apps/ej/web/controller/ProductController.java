@@ -104,4 +104,25 @@ public class ProductController {
 //    校验器
 
 
+    @ApiOperation("保存或更新")
+    @GetMapping("saveorupdate")
+    public Message  saveorupdate(Product product) throws Exception {
+
+         Product product1 = productService.findById(product.getId());
+
+        if (product1==null){
+            productService.insert(product);
+            return MessageUtil.success("插入成功");
+
+
+        }else {
+
+            productService.Update(product);
+            return MessageUtil.success("修改成功");
+        }
+
+
+
+    }
+
 }
