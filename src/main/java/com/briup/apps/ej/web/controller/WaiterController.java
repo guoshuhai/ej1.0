@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 @Api(description = "服务员管理相关的接口")
@@ -51,19 +52,19 @@ WaiterController {
 
     @ApiOperation("保存或更新用户信息")
     @PostMapping("saveOrUpdate")
-    public Message saveOrUpdate(Waiter waiter){
+    public Message saveOrUpdate(@Valid @ModelAttribute Waiter waiter){
         try {
             waiterService.saveOrUpdate(waiter);
             return MessageUtil.success("保存成功!");
         } catch (Exception e) {
             e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
+            return MessageUtil.error("保存失败");
         }
     }
 
     @ApiOperation("通过id删除用户信息")
     @GetMapping("deleteById")
-    public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
+    public Message deleteById( @NotNull@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
         try {
             waiterService.deleteById(id);
             return MessageUtil.success("删除成功!");
@@ -81,7 +82,7 @@ WaiterController {
             return MessageUtil.success("插入成功");
         }catch (Exception e){
             e.printStackTrace();
-            return  MessageUtil.error(e.getMessage());
+            return  MessageUtil.error("id已存在");
         }
     }
     @ApiOperation("批量删除")

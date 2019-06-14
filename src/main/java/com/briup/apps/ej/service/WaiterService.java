@@ -19,4 +19,5 @@ public interface WaiterService {
     void batchDelete(long[] ids) throws  Exception;
 
     void deleteById(long id) throws Exception ;
+
 }
