@@ -269,20 +269,18 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
 
-  <select id="findAllOrder_line" resultMap="Order_lineresultMap">
+  <select id="findAllOrder_line" resultMap="Order_lineresultMap1">
             select
-            eol.number,
-            eo.order_time,
-            eo.total,
-            ep.name,
-            ep.description,
-            ep.status,
-            ep.photo
-            from ej_order_line eol
-            left join ej_order eo on eol.order_id=eo.id
-            left join ej_product ep on eol.product_id=ep.id
+           *
+            from ej_order_line
 
   </select>
+  <resultMap id="Order_lineresultMap1" type="com.briup.apps.ej.bean.Order_line">
+    <id column="id" property="id"/>
+    <result column="number" property="number"/>
+    <result column="order_id" property="orderId"/>
+    <result column="product_id" property="productId"/>
+  </resultMap>
 
   <select id="findAllOrder_lineById" resultMap="Order_lineresultMap">
  select
@@ -315,8 +313,19 @@
       <result column="order_time" property="orderTime"/>
       <result column="total" property="total"/>
     </association>
-
   </resultMap>
 
+  <select id="numberquery" resultMap="queryall">
+    select * from ej_order_line
+    <where>
+      <if test="number != null">and number=#{number}</if>
+    </where>
+  </select>
+  <resultMap id="queryall" type="com.briup.apps.ej.bean.Order_line">
+    <id column="id" property="id"/>  <!--前面是表里面属性的，后面是自己类所写的属性-->
+    <result column="number" property="number"/>
+    <result column="product_id" property="productId"/>
+    <result column="order_id" property="orderId"/>
+  </resultMap>
 
 </mapper>

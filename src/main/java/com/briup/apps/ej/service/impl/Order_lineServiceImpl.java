@@ -36,14 +36,6 @@ public class Order_lineServiceImpl implements Order_lineService {
         }
     }
 
-//    @Override
-//    public int insert(Order_line record) throws  Exception {
-//        if(record.getId()==null){
-//            return orderLineMapper.insert(record);
-//        }else {
-//            throw new Exception("请不要输入ID值");
-//        }
-//    }
 
     @Override
     public int insertSelective(Order_line record) {
@@ -74,21 +66,6 @@ public class Order_lineServiceImpl implements Order_lineService {
     public int updateByPrimaryKeySelective(Order_line record) {
         return orderLineMapper.updateByPrimaryKeySelective(record);
     }
-
-//    @Override
-//    public int updateByPrimaryKey(Order_line record) throws Exception{
-//        if (record.getId()!=null){
-//            Order_line orderLine=orderLineMapper.findAllOrder_lineById(record.getId());
-//            if(MessageUtil.success("",orderLine).getData()!=null){
-//                return orderLineMapper.updateByPrimaryKey(record);
-//            }else{
-//                throw new Exception("用户不存在");
-//            }
-//
-//        }else {
-//            throw new Exception("id值不能为空");
-//        }
-//    }
 
     @Override
     public Order_line_Extend findAllOrder_lineById(Long id) throws Exception {
@@ -125,5 +102,20 @@ public class Order_lineServiceImpl implements Order_lineService {
                 throw new Exception("用户不存在");
             }
         }
+    }
+
+    @Override
+    public List<Order_line> numberquery(Integer number) throws Exception{
+        if (number!=null){
+            List<Order_line> orderLine=orderLineMapper.numberquery(number);
+            if (MessageUtil.success("",orderLine).getData().toString()!="[]"){
+                return orderLineMapper.numberquery(number);
+            }else {
+                throw new Exception("您输入的用户编码不存在");
+            }
+        }else{
+            throw new Exception("请输入用户编码");
+        }
+
     }
 }

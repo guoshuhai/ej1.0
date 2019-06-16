@@ -29,7 +29,7 @@ public class Order {
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
-    @Length(min = 10,message = "长度必须长于10")
+
     private Long orderTime;
 
     /**
@@ -66,6 +66,7 @@ public class Order {
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
+
     private Long addressId;
 
     /**

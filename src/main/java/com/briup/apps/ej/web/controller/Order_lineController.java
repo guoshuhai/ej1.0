@@ -22,12 +22,6 @@ public class Order_lineController {
     @Autowired
     private Order_lineService orderLineService;
 
-    /**@GetMapping("/selectByPrimaryKey")
-    public Message selectByPrimaryKey(@ApiParam(value = "主键",required = true) @RequestParam(value = "id") long id){
-        Order_line orderLine=orderLineService.selectByPrimaryKey(id);
-        return MessageUtil.success("success",orderLine);
-    }**/
-
     @ApiOperation("输入id进行删除")
     @GetMapping("/deleteByPrimaryKey")
     public Message deleteByPrimaryKey(@ApiParam(value = "主键",required = true) @RequestParam(value = "id") long id){
@@ -40,31 +34,6 @@ public class Order_lineController {
         }
     }
 
-//    @ApiOperation("不输入id进行插入")
-//    @PostMapping("/insert")
-//    public Message insert(Order_line record){
-//        try {
-//            orderLineService.insert(record);
-//            return MessageUtil.success("插入成功!");
-//        }catch (Exception e) {
-//            e.printStackTrace();
-//            return MessageUtil.error(e.getMessage());
-//        }
-//    }
-
-//    @ApiOperation("输入id进行更新")
-//    @PostMapping("/updateByPrimaryKey")
-//    public Message updateByPrimaryKey(Order_line record){
-//        try {
-//            orderLineService.updateByPrimaryKey(record);
-//            return MessageUtil.success("更新成功!");
-//        }catch (Exception e) {
-//            e.printStackTrace();
-//            return MessageUtil.error(e.getMessage());
-//        }
-//    }
-
-
     @ApiOperation("输入id进行查询")
     @GetMapping("findAllOrder_lineById")
     public Message findAllOrder_lineById(@ApiParam(value = "主键",required = true) @RequestParam(value = "id") Long id) throws Exception{
@@ -75,7 +44,6 @@ public class Order_lineController {
         }else
         {  throw new Exception("此id不存在");
         }
-
     }
 
     @ApiOperation("查询所有")
@@ -102,6 +70,13 @@ public class Order_lineController {
             e.printStackTrace();
             return MessageUtil.error(e.getMessage());
         }
+    }
+
+    @ApiOperation("通过订单号编码进行查询")
+    @GetMapping("/numberquery")
+    public Message  numberquery(Integer number) throws Exception{
+        List<Order_line>  list=orderLineService.numberquery(number);
+        return MessageUtil.success("success",list);
     }
 
 }
