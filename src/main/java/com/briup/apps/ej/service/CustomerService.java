@@ -1,6 +1,7 @@
 package com.briup.apps.ej.service;
 
 
+import com.briup.apps.ej.bean.Address;
 import com.briup.apps.ej.bean.Customer;
 import com.briup.apps.ej.bean.CustomerExample;
 import org.apache.ibatis.annotations.Param;
@@ -49,6 +50,7 @@ public interface CustomerService {
     Customer findByCustromName(String realname);
 
 
+     List<Address> findAddressById(Long id);
 
 
 

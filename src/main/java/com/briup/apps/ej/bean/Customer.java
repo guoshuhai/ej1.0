@@ -3,6 +3,7 @@ package com.briup.apps.ej.bean;
 import io.swagger.annotations.ApiParam;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class Customer {
     /**
@@ -12,6 +13,7 @@ public class Customer {
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
+    @NotNull(message = "id不能为空")
     private Long id;
 
 
