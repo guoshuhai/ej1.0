@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@Api(description = "订单项管理系统")
+@Api(description = "订单项管理的相关接口")
 @RestController
 @RequestMapping("Order_line")
 public class Order_lineController {

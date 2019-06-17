@@ -1,5 +1,7 @@
 package com.briup.apps.ej.bean;
 
+import io.swagger.annotations.ApiParam;
+
 public class Order_line {
     /**
      *

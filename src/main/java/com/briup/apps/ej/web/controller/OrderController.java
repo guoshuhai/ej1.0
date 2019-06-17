@@ -23,7 +23,7 @@ import java.util.List;
 
 import com.briup.apps.ej.dao.OrderMapper;
 
-@Api(description = "订单管理系统接口")
+@Api(description = "订单管理系统的相关接口")
 @Validated
 @RestController
 @RequestMapping("Order")
