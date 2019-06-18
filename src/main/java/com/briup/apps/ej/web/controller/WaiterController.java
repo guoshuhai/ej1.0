@@ -92,7 +92,6 @@ WaiterController {
         return MessageUtil.success("批量删除成功");
     }
 
-
     @ApiOperation("保存或更新")
     @GetMapping("saveorupdate")
     public Message  saveorupdate(Waiter waiter) throws Exception {
@@ -110,8 +109,11 @@ WaiterController {
             return MessageUtil.success("修改成功");
         }
 
-
-
     }
+
+
+
+
+
     }
 

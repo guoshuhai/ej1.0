@@ -60,7 +60,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void insert(Product product) throws Exception {
 
-            productMapper.insert(product);
+        productMapper.insert(product);
 
     }
 

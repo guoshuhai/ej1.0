@@ -45,20 +45,20 @@ public class WaiterServiceImpl implements WaiterService {
     public Waiter findById(long id) {
         return waiterMapper.selectByPrimaryKey(id);
 
-}
+    }
 
 
-   @Override
+    @Override
     public void Update(Waiter waiter) throws Exception {
 
-                waiterMapper.updateByPrimaryKey(waiter);
+        waiterMapper.updateByPrimaryKey(waiter);
 
     }
 
     @Override
     public void insert(Waiter waiter) throws Exception {
 
-            waiterMapper.insert(waiter);
+        waiterMapper.insert(waiter);
 
     }
 
@@ -78,4 +78,3 @@ public class WaiterServiceImpl implements WaiterService {
         }
     }
 }
-

@@ -108,7 +108,7 @@ public class ProductController {
     @GetMapping("saveorupdate")
     public Message  saveorupdate(Product product) throws Exception {
 
-         Product product1 = productService.findById(product.getId());
+        Product product1 = productService.findById(product.getId());
 
         if (product1==null){
             productService.insert(product);
@@ -120,8 +120,6 @@ public class ProductController {
             productService.Update(product);
             return MessageUtil.success("修改成功");
         }
-
-
 
     }
 

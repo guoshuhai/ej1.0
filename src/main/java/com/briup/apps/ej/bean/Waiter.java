@@ -3,7 +3,7 @@ package com.briup.apps.ej.bean;
 import io.swagger.annotations.ApiParam;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+
 
 public class Waiter {
     /**
@@ -13,8 +13,8 @@ public class Waiter {
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
-    @ApiParam(value = "id" ,required = true)
-    @NotNull(message = "id不能为空" )
+    @ApiParam(value = "id" )
+
     private Long id;
 
     /**
@@ -25,7 +25,7 @@ public class Waiter {
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
     @ApiParam(value = "电话" )
-    @NotBlank(message = "电话不能为空" )
+
     private String telephone;
 
     /**
@@ -36,7 +36,7 @@ public class Waiter {
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
     @ApiParam(value = "密码")
-    @NotBlank(message = "密码不能为空" )
+
     private String password;
 
     /**
@@ -47,7 +47,7 @@ public class Waiter {
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
     @ApiParam(value = "真实姓名" )
-    @NotBlank(message = "真实姓名不能为空" )
+
     private String realname;
 
     /**
@@ -69,7 +69,7 @@ public class Waiter {
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
     @ApiParam(value = "部门" )
-    @NotBlank(message = "部门不能为空" )
+
     private String status;
 
     /**

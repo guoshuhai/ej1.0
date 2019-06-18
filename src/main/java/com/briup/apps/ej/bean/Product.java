@@ -23,8 +23,8 @@ h     * This field corresponds to the database column ej_product.name
      *
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
-    @ApiParam(value = "用户" ,required = true)
-  @NotBlank(message = "用户不能为空" )
+    @ApiParam(value = "用户" )
+
     private String name;
 
     /**
@@ -35,7 +35,7 @@ h     * This field corresponds to the database column ej_product.name
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
     @ApiParam(value = "描述")
-    @NotBlank(message = "描述不能为空" )
+
     private String description;
 
     /**
@@ -47,7 +47,7 @@ h     * This field corresponds to the database column ej_product.name
      */
 
     @ApiParam(value = "价格" )
-    @NotNull(message = "价格不能为空" )
+
     private Double price;
 
     /**
