@@ -36,14 +36,6 @@ public class Order_lineServiceImpl implements Order_lineService {
         }
     }
 
-    @Override
-    public int insert(Order_line record) throws  Exception {
-        if(record.getId()==null){
-            return orderLineMapper.insert(record);
-        }else {
-            throw new Exception("请不要输入ID值");
-        }
-    }
 
     @Override
     public int insertSelective(Order_line record) {
@@ -76,21 +68,6 @@ public class Order_lineServiceImpl implements Order_lineService {
     }
 
     @Override
-    public int updateByPrimaryKey(Order_line record) throws Exception{
-        if (record.getId()!=null){
-            Order_line orderLine=orderLineMapper.findAllOrder_lineById(record.getId());
-            if(MessageUtil.success("",orderLine).getData()!=null){
-                return orderLineMapper.updateByPrimaryKey(record);
-            }else{
-                throw new Exception("用户不存在");
-            }
-
-        }else {
-            throw new Exception("id值不能为空");
-        }
-    }
-
-    @Override
     public Order_line_Extend findAllOrder_lineById(Long id) throws Exception {
         Order_line_Extend orderLine=orderLineMapper.findAllOrder_lineById(id);
         if (MessageUtil.success("",orderLine).getData()!=null){
@@ -110,5 +87,35 @@ public class Order_lineServiceImpl implements Order_lineService {
         for(long id:ids){
             orderLineMapper.deleteByPrimaryKey(id);
         }
+    }
+
+    @Override
+    public void saveOrUpdate(Order_line orderLine) throws Exception {
+        if (orderLine.getId() == null) {
+            // 初始化属性
+            orderLineMapper.insert(orderLine);
+        } else {
+            Order_line order = orderLineMapper.findAllOrder_lineById(orderLine.getId());
+            if (MessageUtil.success("", order).getData() != null) {
+                orderLineMapper.updateByPrimaryKey(orderLine);
+            } else {
+                throw new Exception("用户不存在");
+            }
+        }
+    }
+
+    @Override
+    public List<Order_line> numberquery(Integer number) throws Exception{
+        if (number!=null){
+            List<Order_line> orderLine=orderLineMapper.numberquery(number);
+            if (MessageUtil.success("",orderLine).getData().toString()!="[]"){
+                return orderLineMapper.numberquery(number);
+            }else {
+                throw new Exception("您输入的用户编码不存在");
+            }
+        }else{
+            throw new Exception("请输入用户编码");
+        }
+
     }
 }

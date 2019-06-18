@@ -45,8 +45,8 @@ public class Swagger2 {
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
 				.title("e洁家政系统开发")
-				.description("躲不掉的404团队，http://www.briup.com")
-				.termsOfServiceUrl("http://www.briup.com")
+				.description("躲不掉的404团队，https://github.com/guoshuhai/ej1.0")
+				.termsOfServiceUrl("https://github.com/guoshuhai/ej1.0")
 				.version("1.0")
 				.build();
 	}

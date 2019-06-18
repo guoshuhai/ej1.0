@@ -105,7 +105,7 @@ public class ProductController {
 
 
     @ApiOperation("保存或更新")
-    @GetMapping("saveorupdate")
+    @PostMapping("saveorupdate")
     public Message  saveorupdate(Product product) throws Exception {
 
         Product product1 = productService.findById(product.getId());

@@ -98,7 +98,7 @@ public class AddressController {
     }
 
     @ApiOperation("保存或更新")
-    @GetMapping("saveorupdate")
+    @PostMapping("saveorupdate")
     public Message  saveorupdate(Address address) throws Exception {
 
         Address address1 = AddressService.selectByPrimaryKey(address.getId());

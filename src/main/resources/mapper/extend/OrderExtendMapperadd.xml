@@ -30,5 +30,4 @@
         <result column="total"  property="total" />
         <result column="orderTime"  property="orderTime" />
     </resultMap>
-
 </mapper>
