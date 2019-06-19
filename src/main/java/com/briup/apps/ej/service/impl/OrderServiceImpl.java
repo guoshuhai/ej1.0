@@ -3,6 +3,7 @@ package com.briup.apps.ej.service.impl;
 import com.briup.apps.ej.bean.*;
 import com.briup.apps.ej.bean.VM.OrderAndOrderLineVM;
 import com.briup.apps.ej.bean.VM.OrderVM;
+import com.briup.apps.ej.bean.VM.dingdanVM;
 import com.briup.apps.ej.bean.extend.orderExtend;
 import com.briup.apps.ej.dao.OrderMapper;
 import com.briup.apps.ej.dao.Order_lineMapper;
@@ -169,5 +170,16 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> query(Long orderTime,Long customerId,  Long waiterId, @Param("addressId") Long addressId) {
         return orderMapper.query(orderTime,customerId,waiterId,addressId);
+    }
+
+//    @Override
+//    public List<Order> dingdanquery(String status) {
+//        return orderMapper.dingdanquery(status);
+//    }
+
+
+    @Override
+    public List<dingdanVM> dingdanquery(String status) {
+        return orderMapper.dingdanquery(status);
     }
 }

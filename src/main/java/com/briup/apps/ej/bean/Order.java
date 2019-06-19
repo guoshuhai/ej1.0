@@ -40,6 +40,7 @@ public class Order {
      * @mbg.generated Mon Jun 10 13:33:10 CST 2019
      */
     private Double total;
+    private String status;
 
     /**
      *
@@ -211,5 +212,13 @@ public class Order {
      */
     public void setAddressId(Long addressId) {
         this.addressId = addressId;
+    }
+
+//    public String getStatus() {
+//        return status;
+//    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

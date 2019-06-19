@@ -4,6 +4,7 @@ import com.briup.apps.ej.bean.Order;
 import com.briup.apps.ej.bean.OrderExample;
 import com.briup.apps.ej.bean.VM.OrderAndOrderLineVM;
 import com.briup.apps.ej.bean.VM.OrderVM;
+import com.briup.apps.ej.bean.VM.dingdanVM;
 import com.briup.apps.ej.bean.extend.orderExtend;
 import org.apache.ibatis.annotations.Param;
 
@@ -47,5 +48,9 @@ public interface OrderService {
     List<OrderVM> queryBasic(Long customerId, Long waiterId) throws Exception;
 
     void save(OrderAndOrderLineVM order) throws Exception;
+
+//    List<Order> dingdanquery(String status);;
+
+    List<dingdanVM> dingdanquery(String status);
 }
 

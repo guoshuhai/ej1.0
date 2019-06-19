@@ -4,6 +4,7 @@ import com.briup.apps.ej.bean.Order;
 import com.briup.apps.ej.bean.OrderExample;
 import java.util.List;
 
+import com.briup.apps.ej.bean.VM.dingdanVM;
 import com.briup.apps.ej.bean.extend.orderExtend;
 import org.apache.ibatis.annotations.Param;
 
@@ -37,5 +38,8 @@ public interface OrderMapper {
 
     List<Order> query(@Param("orderTime") Long orderTime,@Param("customerId") Long customerId,@Param("waiterId") Long waiterId,@Param("addressId") Long addressId);//6.模糊查询订单
 
+//    List<Order> dingdanquery(@Param("status") String status);
+
+    List<dingdanVM> dingdanquery(@Param("status")String status);
 
 }
