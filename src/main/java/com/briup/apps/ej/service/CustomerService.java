@@ -4,6 +4,7 @@ package com.briup.apps.ej.service;
 import com.briup.apps.ej.bean.Address;
 import com.briup.apps.ej.bean.Customer;
 import com.briup.apps.ej.bean.CustomerExample;
+import com.briup.apps.ej.bean.extend.CustomerExtend;
 import org.apache.ibatis.annotations.Param;
 
 
@@ -50,7 +51,7 @@ public interface CustomerService {
     Customer findByCustromName(String realname);
 
 
-     List<Address> findAddressById(Long id);
+     List<CustomerExtend> findAddressById(Long id);
 
 
 

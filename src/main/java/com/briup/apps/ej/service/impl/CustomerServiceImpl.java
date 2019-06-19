@@ -4,6 +4,7 @@ package com.briup.apps.ej.service.impl;
 import com.briup.apps.ej.bean.Address;
 import com.briup.apps.ej.bean.Customer;
 import com.briup.apps.ej.bean.CustomerExample;
+import com.briup.apps.ej.bean.extend.CustomerExtend;
 import com.briup.apps.ej.dao.CustomerMapper;
 import com.briup.apps.ej.dao.extend.CustomerExtendMapper;
 import com.briup.apps.ej.service.CustomerService;
@@ -72,12 +73,12 @@ public class CustomerServiceImpl implements CustomerService {
         return customerMapper.insert(record);
     }
 
-    //根据id更新顾客信息数据
+
 //
-//    @Override
+//  根据id查询顾客地址信息
 
     @Override
-    public List<Address> findAddressById(Long id) {
+    public List<CustomerExtend> findAddressById(Long id) {
         return customerExtendMapper.findAddressById(id);
     }
 //    public int updateByPrimaryKey(Customer record) throws Exception {

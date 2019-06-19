@@ -10,12 +10,15 @@
     c.realname,
     c.status,
     c.photo,
+    c.address as c_address,
+
     a.id as a_id,
     a.province,
     a.city,
     a.area,
     a.telephone as a_telephone,
-    a.customer_id
+    a.customer_id,
+    a.address as a_address
     from ej_customer c
     left join ej_address a
     on c.id=a.customer_id
@@ -25,17 +28,20 @@
     <resultMap id="findAddressByIds" type="com.briup.apps.ej.bean.extend.CustomerExtend">
 
         <id column="c_id" jdbcType="BIGINT" property="id" />
+        <result property="address" column="c_address"></result>
         <result column="c_telephone" jdbcType="VARCHAR" property="telephone" />
         <result column="password" jdbcType="VARCHAR" property="password" />
         <result column="realname" jdbcType="VARCHAR" property="realname" />
         <result column="status" jdbcType="VARCHAR" property="status" />
         <result column="photo" jdbcType="VARCHAR" property="photo" />
+
+
 <collection property="addresses" ofType="com.briup.apps.ej.bean.Address">
         <id column="a_id" jdbcType="BIGINT" property="id" />
         <result column="province" jdbcType="VARCHAR" property="province" />
         <result column="city" jdbcType="VARCHAR" property="city" />
         <result column="area" jdbcType="VARCHAR" property="area" />
-        <result column="address" jdbcType="VARCHAR" property="address" />
+        <result column="a_address" jdbcType="VARCHAR" property="address" />
         <result column="a_telephone" jdbcType="VARCHAR" property="telephone" />
         <result column="customer_id" jdbcType="BIGINT" property="customerId" />
 </collection>

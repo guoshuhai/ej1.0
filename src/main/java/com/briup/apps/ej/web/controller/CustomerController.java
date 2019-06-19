@@ -3,6 +3,7 @@ package com.briup.apps.ej.web.controller;
 
 import com.briup.apps.ej.bean.Address;
 import com.briup.apps.ej.bean.Customer;
+import com.briup.apps.ej.bean.extend.CustomerExtend;
 import com.briup.apps.ej.service.CustomerService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
@@ -136,7 +137,7 @@ public class CustomerController {
     @ApiOperation("通过顾客id查询地址")
     @GetMapping("findAddressById")
     public Message findAddressById(@Valid @RequestParam("id") Long id) throws Exception {
-        List<Address> addressById = customerService.findAddressById(id);
+        List<CustomerExtend> addressById = customerService.findAddressById(id);
         return MessageUtil.success("success", addressById);
     }
 }
