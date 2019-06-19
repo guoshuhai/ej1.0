@@ -3,6 +3,7 @@ package com.briup.apps.ej.web.controller;
 import com.briup.apps.ej.bean.Order;
 import com.briup.apps.ej.bean.VM.OrderAndOrderLineVM;
 import com.briup.apps.ej.bean.VM.OrderVM;
+import com.briup.apps.ej.bean.VM.dingdanVM;
 import com.briup.apps.ej.bean.extend.orderExtend;
 import com.briup.apps.ej.service.OrderService;
 import com.briup.apps.ej.utils.Message;
@@ -106,6 +107,19 @@ public class OrderController {
         return MessageUtil.success("success",list);
     }
 
+//    @ApiOperation("全局性模糊查询,针对内部调用所开发")
+//    @GetMapping("/dingdanquery")
+//    public Message  dingdanquery(String status){
+//        List<Order>  list=orderService.dingdanquery(status);
+//        return MessageUtil.success("success",list);
+//    }
+
+    @ApiOperation("全局性模糊查询,针对内部调用所开发")
+    @GetMapping("/dingdanquery")
+    public Message  dingdanquery(String status){
+        List<dingdanVM>  list=orderService.dingdanquery(status);
+        return MessageUtil.success("success",list);
+    }
 
 }
 
