@@ -3,13 +3,13 @@ package com.briup.apps.ej.service.impl;
 
 
 
-import com.briup.apps.ej.bean.Product;
+
 import com.briup.apps.ej.bean.Waiter;
 import com.briup.apps.ej.bean.WaiterExample;
 
 import com.briup.apps.ej.dao.WaiterMapper;
 import com.briup.apps.ej.service.WaiterService;
-import com.briup.apps.ej.utils.MessageUtil;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,10 +27,10 @@ public class WaiterServiceImpl implements WaiterService {
         // 创建空模板
         WaiterExample example = new WaiterExample();
         // 在模板中添加条件
-        if (waiter.getTelephone() != null) {
+        if (waiter.getRealname() != null) {
             example
                     .createCriteria()
-                    .andTelephoneLike("%" + waiter.getTelephone() + "%");
+                    .andRealnameLike("%" + waiter.getRealname() + "%");
         }
 
         return waiterMapper.selectByExample(example);
