@@ -32,6 +32,7 @@ public class MessageUtil {
     public static Message success(String msg,Object data){
         Message message = new Message();
         message.setStatus(200);
+
         message.setMessage(msg);
         message.setData(data);
         message.setTimestamp(new Date().getTime());

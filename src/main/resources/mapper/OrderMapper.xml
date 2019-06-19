@@ -520,7 +520,7 @@
   </select>
 
   <resultMap id="findall" type="com.briup.apps.ej.bean.Order">
-    <id column="ol1_id" property="id"/>  <!--前面是表里面属性的，后面是自己类所写的属性-->
+    <id column="id" property="id"/>  <!--前面是表里面属性的，后面是自己类所写的属性-->
     <result column="order_time" property="orderTime"/>
     <result column="total" property="total"/>
     <result column="customer_id" property="customerId"/>
