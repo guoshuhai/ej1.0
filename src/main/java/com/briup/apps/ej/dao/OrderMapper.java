@@ -40,6 +40,7 @@ public interface OrderMapper {
 
 //    List<Order> dingdanquery(@Param("status") String status);
 
-    List<dingdanVM> dingdanquery(@Param("status")String status);
-
+    List<dingdanVM> dingdanqueryOver(@Param("status")String status);
+    List<dingdanVM> dingdanqueryWait(@Param("status")String status);
+    List<dingdanVM> dingdanqueryFinish(@Param("status")String status);
 }

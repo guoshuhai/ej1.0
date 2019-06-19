@@ -51,6 +51,9 @@ public interface OrderService {
 
 //    List<Order> dingdanquery(String status);;
 
-    List<dingdanVM> dingdanquery(String status);
+    List<dingdanVM> dingdanqueryOver(String status);
+    List<dingdanVM> dingdanqueryWait(String status);
+    List<dingdanVM> dingdanqueryFinish(String status);
+
 }
 

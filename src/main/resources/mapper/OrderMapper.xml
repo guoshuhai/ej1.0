@@ -320,7 +320,7 @@
     <result column="address_id" property="addressId"/>
   </resultMap>
 
-  <select id="dingdanquery" resultMap="queryall1">
+  <select id="dingdanqueryOver" resultMap="queryall1">
     select distinct
     o.id as o_id,
     o.total as total,
@@ -346,7 +346,7 @@
       AND o.id=f.order_id
       AND f.product_id=d.id
       AND f.order_id in(select f.order_id from ej_order_line f1 where f.product_id=f1.product_id and f.order_id=f1.order_id)
-      AND o.status = #{status} ) t1,(select
+      AND o.status = 'over' ) t1,(select
     o.id as o_id,
     o.total as total,
     o.status as status,
@@ -362,7 +362,7 @@
       AND o.id=f.order_id
       AND f.product_id=d.id
       AND f.order_id in(select f.order_id from ej_order_line f1 where f.product_id=f1.product_id and f.order_id=f1.order_id)
-      AND o.status = #{status} ) t2
+      AND o.status = 'over' ) t2
     where t1.o_id=t2.o_id and t1.productname=t2.productname
       group by t1.o_id,t1.productname) t1
     where
@@ -371,11 +371,141 @@
       AND o.id=f.order_id
       AND f.product_id=d.id
       AND f.order_id in(select f.order_id from ej_order_line f1 where f.product_id=f1.product_id and f.order_id=f1.order_id)
-      AND o.status = #{status}
+      AND o.status = 'over'
       AND o.id=t1.o_id
   </select>
 
   <resultMap id="queryall1" type="com.briup.apps.ej.bean.VM.dingdanVM">
+    <result column="orderTime"  property="orderTime" />
+    <result column="waiterName"  property="waiterName" />
+    <result column="address"  property="address" />
+    <result column="total"  property="total" />
+    <result column="status"  property="status" />
+    <result column="productname"  property="productName" />
+    <result column="Number"  property="number" />
+  </resultMap>
+
+  <select id="dingdanqueryWait" resultMap="queryall2">
+    select distinct
+    o.id as o_id,
+    o.total as total,
+    o.status as status,
+    o.order_time as orderTime,
+    w.realname as waiterName,
+    a.city as address,
+    d.name as productname,
+    t1.number as Number
+    from ej_order o,ej_waiter w,ej_address a,ej_product d,ej_order_line f,(select t1.o_id,t1.productname,count(*) as number from (select distinct
+    o.id as o_id,
+    o.total as total,
+    o.status as status,
+    o.number as number,
+    o.order_time as orderTime,
+    w.realname as waiterName,
+    a.city as address,
+    d.name as productname
+    from ej_order o,ej_waiter w,ej_address a,ej_product d,ej_order_line f
+    where
+      o.waiter_id = w.id
+      AND o.address_id = a.id
+      AND o.id=f.order_id
+      AND f.product_id=d.id
+      AND f.order_id in(select f.order_id from ej_order_line f1 where f.product_id=f1.product_id and f.order_id=f1.order_id)
+      AND o.status = 'wait' ) t1,(select
+    o.id as o_id,
+    o.total as total,
+    o.status as status,
+    o.number as number,
+    o.order_time as orderTime,
+    w.realname as waiterName,
+    a.city as address,
+    d.name as productname
+    from ej_order o,ej_waiter w,ej_address a,ej_product d,ej_order_line f
+    where
+      o.waiter_id = w.id
+      AND o.address_id = a.id
+      AND o.id=f.order_id
+      AND f.product_id=d.id
+      AND f.order_id in(select f.order_id from ej_order_line f1 where f.product_id=f1.product_id and f.order_id=f1.order_id)
+      AND o.status = 'wait' ) t2
+    where t1.o_id=t2.o_id and t1.productname=t2.productname
+      group by t1.o_id,t1.productname) t1
+    where
+      o.waiter_id = w.id
+      AND o.address_id = a.id
+      AND o.id=f.order_id
+      AND f.product_id=d.id
+      AND f.order_id in(select f.order_id from ej_order_line f1 where f.product_id=f1.product_id and f.order_id=f1.order_id)
+      AND o.status = 'wait'
+      AND o.id=t1.o_id
+  </select>
+
+  <resultMap id="queryall2" type="com.briup.apps.ej.bean.VM.dingdanVM">
+    <result column="orderTime"  property="orderTime" />
+    <result column="waiterName"  property="waiterName" />
+    <result column="address"  property="address" />
+    <result column="total"  property="total" />
+    <result column="status"  property="status" />
+    <result column="productname"  property="productName" />
+    <result column="Number"  property="number" />
+  </resultMap>
+
+  <select id="dingdanqueryFinish" resultMap="queryall3">
+    select distinct
+    o.id as o_id,
+    o.total as total,
+    o.status as status,
+    o.order_time as orderTime,
+    w.realname as waiterName,
+    a.city as address,
+    d.name as productname,
+    t1.number as Number
+    from ej_order o,ej_waiter w,ej_address a,ej_product d,ej_order_line f,(select t1.o_id,t1.productname,count(*) as number from (select distinct
+    o.id as o_id,
+    o.total as total,
+    o.status as status,
+    o.number as number,
+    o.order_time as orderTime,
+    w.realname as waiterName,
+    a.city as address,
+    d.name as productname
+    from ej_order o,ej_waiter w,ej_address a,ej_product d,ej_order_line f
+    where
+      o.waiter_id = w.id
+      AND o.address_id = a.id
+      AND o.id=f.order_id
+      AND f.product_id=d.id
+      AND f.order_id in(select f.order_id from ej_order_line f1 where f.product_id=f1.product_id and f.order_id=f1.order_id)
+      AND o.status = 'finish' ) t1,(select
+    o.id as o_id,
+    o.total as total,
+    o.status as status,
+    o.number as number,
+    o.order_time as orderTime,
+    w.realname as waiterName,
+    a.city as address,
+    d.name as productname
+    from ej_order o,ej_waiter w,ej_address a,ej_product d,ej_order_line f
+    where
+      o.waiter_id = w.id
+      AND o.address_id = a.id
+      AND o.id=f.order_id
+      AND f.product_id=d.id
+      AND f.order_id in(select f.order_id from ej_order_line f1 where f.product_id=f1.product_id and f.order_id=f1.order_id)
+      AND o.status = 'finish' ) t2
+    where t1.o_id=t2.o_id and t1.productname=t2.productname
+      group by t1.o_id,t1.productname) t1
+    where
+      o.waiter_id = w.id
+      AND o.address_id = a.id
+      AND o.id=f.order_id
+      AND f.product_id=d.id
+      AND f.order_id in(select f.order_id from ej_order_line f1 where f.product_id=f1.product_id and f.order_id=f1.order_id)
+      AND o.status = 'finish'
+      AND o.id=t1.o_id
+  </select>
+
+  <resultMap id="queryall3" type="com.briup.apps.ej.bean.VM.dingdanVM">
     <result column="orderTime"  property="orderTime" />
     <result column="waiterName"  property="waiterName" />
     <result column="address"  property="address" />

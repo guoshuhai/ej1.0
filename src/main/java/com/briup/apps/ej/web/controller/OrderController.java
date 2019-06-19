@@ -114,10 +114,25 @@ public class OrderController {
 //        return MessageUtil.success("success",list);
 //    }
 
-    @ApiOperation("全局性模糊查询,针对内部调用所开发")
-    @GetMapping("/dingdanquery")
-    public Message  dingdanquery(String status){
-        List<dingdanVM>  list=orderService.dingdanquery(status);
+
+    @ApiOperation("over状态订单接口")
+    @GetMapping("/dingdanqueryOver")
+    public Message  dingdanqueryOver(String status){
+        List<dingdanVM>  list=orderService.dingdanqueryOver(status);
+        return MessageUtil.success("success",list);
+    }
+
+    @ApiOperation("wait状态订单接口")
+    @GetMapping("/dingdanqueryWait")
+    public Message  dingddingdanqueryWait(String status){
+        List<dingdanVM>  list=orderService.dingdanqueryWait(status);
+        return MessageUtil.success("success",list);
+    }
+
+    @ApiOperation("finish状态订单接口")
+    @GetMapping("/dingdanqueryFinish")
+    public Message  dingdanqueryFinish(String status){
+        List<dingdanVM>  list=orderService.dingdanqueryFinish(status);
         return MessageUtil.success("success",list);
     }
 

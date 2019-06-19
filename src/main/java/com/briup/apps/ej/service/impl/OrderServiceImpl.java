@@ -178,8 +178,19 @@ public class OrderServiceImpl implements OrderService {
 //    }
 
 
+
     @Override
-    public List<dingdanVM> dingdanquery(String status) {
-        return orderMapper.dingdanquery(status);
+    public List<dingdanVM> dingdanqueryOver(String status) {
+        return orderMapper.dingdanqueryOver(status);
+    }
+
+    @Override
+    public List<dingdanVM> dingdanqueryWait(String status) {
+        return orderMapper.dingdanqueryWait(status);
+    }
+
+    @Override
+    public List<dingdanVM> dingdanqueryFinish(String status) {
+        return orderMapper.dingdanqueryFinish(status);
     }
 }
